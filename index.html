@@ -134,17 +134,100 @@
             background: #334155;
             border-radius: 2px;
         }
+
+        /* Logo Animations */
+        .anim-pulse { animation: pulseGlow 3s infinite alternate; }
+        @keyframes pulseGlow {
+            0% { filter: drop-shadow(0 0 10px rgba(16,185,129,0.2)); }
+            100% { filter: drop-shadow(0 0 25px rgba(16,185,129,0.6)); }
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-brand-primary selection:text-white">
 
+    <!-- GLOBAL SVG DEFINITIONS ENGINE (Prevents duplicate IDs and keeps code clean) -->
+    <svg width="0" height="0" class="hidden absolute" aria-hidden="true">
+        <defs>
+            <filter id="ambientGlow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="25" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+            <filter id="sharpGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="4" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+            <filter id="textShadow">
+                <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.4" />
+            </filter>
+            <linearGradient id="glassTop" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#34d399" stop-opacity="0.4" />
+                <stop offset="100%" stop-color="#10b981" stop-opacity="0.05" />
+            </linearGradient>
+            <linearGradient id="glassMid" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#60a5fa" stop-opacity="0.3" />
+                <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.05" />
+            </linearGradient>
+            <linearGradient id="glassBot" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.3" />
+                <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.05" />
+            </linearGradient>
+        </defs>
+    </svg>
+
     <!-- PRELOADER -->
     <div id="preloader" class="fixed inset-0 z-[100] bg-slate-950 flex flex-col items-center justify-center transition-opacity duration-700">
-        <div class="relative w-24 h-24 flex items-center justify-center mb-6">
-            <div class="absolute w-12 h-12 border-t-4 border-brand-primary rounded-full animate-[spin_1s_linear_infinite]"></div>
-            <div class="absolute w-16 h-16 border-r-4 border-brand-secondary rounded-full animate-[spin_1.5s_linear_infinite_reverse]"></div>
-            <div class="absolute w-20 h-20 border-b-4 border-brand-accent rounded-full animate-[spin_2s_linear_infinite]"></div>
-            <i class="fas fa-server text-brand-primary text-xl animate-pulse"></i>
+        <div class="h-24 md:h-32 mb-10 flex items-center justify-center">
+            <!-- FULL ANIMATED SVG LOGO -->
+            <svg viewBox="0 0 580 180" class="h-full w-auto overflow-visible" aria-label="Stacknomic Logo">
+                <circle cx="80" cy="90" r="60" fill="#10b981" filter="url(#ambientGlow)" opacity="0.15" />
+                <circle cx="80" cy="50" r="40" fill="#3b82f6" filter="url(#ambientGlow)" opacity="0.1" />
+                <g transform="translate(10, 5)">
+                    <g stroke="rgba(255,255,255,0.1)" stroke-width="1.5" stroke-dasharray="4, 4">
+                        <line x1="20" y1="35" x2="20" y2="125" />
+                        <line x1="140" y1="35" x2="140" y2="125" />
+                        <line x1="80" y1="65" x2="80" y2="155" />
+                    </g>
+                    <circle cx="20" cy="125" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
+                        <animate attributeName="cy" values="125;35;125" dur="4s" repeatCount="indefinite" />
+                        <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="140" cy="125" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
+                        <animate attributeName="cy" values="125;35;125" dur="4s" begin="2s" repeatCount="indefinite" />
+                        <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" begin="2s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="80" cy="155" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
+                        <animate attributeName="cy" values="155;65;155" dur="4s" begin="1s" repeatCount="indefinite" />
+                        <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" begin="1s" repeatCount="indefinite" />
+                    </circle>
+                    <g>
+                        <animateTransform attributeName="transform" type="translate" values="0,0; 0,2; 0,0" dur="6s" repeatCount="indefinite"/>
+                        <polygon points="80,90 140,120 80,150 20,120" fill="url(#glassBot)" stroke="#a78bfa" stroke-width="1.5" />
+                        <polygon points="20,120 80,150 80,162 20,132" fill="#6d28d9" />
+                        <polygon points="80,150 140,120 140,132 80,162" fill="#5b21b6" />
+                    </g>
+                    <g>
+                        <animateTransform attributeName="transform" type="translate" values="0,0; 0,-2; 0,0" dur="5s" repeatCount="indefinite"/>
+                        <polygon points="80,45 140,75 80,105 20,75" fill="url(#glassMid)" stroke="#60a5fa" stroke-width="1.5" />
+                        <polyline points="50,60 80,75 110,60" fill="none" stroke="#93c5fd" stroke-width="1" opacity="0.3" />
+                        <polyline points="50,90 80,75 110,90" fill="none" stroke="#93c5fd" stroke-width="1" opacity="0.3" />
+                        <polygon points="20,75 80,105 80,117 20,87" fill="#1d4ed8" />
+                        <polygon points="80,105 140,75 140,87 80,117" fill="#1e3a8a" />
+                    </g>
+                    <g class="anim-pulse">
+                        <animateTransform attributeName="transform" type="translate" values="0,0; 0,-4; 0,0" dur="4s" repeatCount="indefinite"/>
+                        <polygon points="80,0 140,30 80,60 20,30" fill="url(#glassTop)" stroke="#34d399" stroke-width="2" />
+                        <polygon points="80,15 110,30 80,45 50,30" fill="none" stroke="#6ee7b7" stroke-width="1.5" filter="url(#sharpGlow)" />
+                        <circle cx="80" cy="30" r="3" fill="#ffffff" filter="url(#sharpGlow)" />
+                        <polygon points="20,30 80,60 80,72 20,42" fill="#059669" />
+                        <polygon points="80,60 140,30 140,42 80,72" fill="#047857" />
+                    </g>
+                </g>
+                <text x="175" y="112" filter="url(#textShadow)" letter-spacing="-1">
+                    <tspan fill="#f8fafc" font-size="68" font-family="'Inter', system-ui, sans-serif" font-weight="800">Stack</tspan>
+                    <tspan fill="#10b981" font-size="68" font-family="'JetBrains Mono', monospace" font-weight="700">nomic</tspan>
+                    <tspan fill="#64748b" font-size="32" font-family="'JetBrains Mono', monospace" font-weight="700" dy="-4">.io</tspan>
+                </text>
+            </svg>
         </div>
         <div class="font-mono text-xs text-brand-primary tracking-widest uppercase animate-pulse">Booting Edge Network...</div>
     </div>
@@ -153,50 +236,53 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <a href="index.html" class="flex-shrink-0 flex items-center cursor-pointer hover:opacity-80 transition-opacity" aria-label="Stacknomic Home">
-                    <!-- ANIMATED SVG LOGO (MASTER) -->
-                    <svg id="stacknomic-nav-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 120" style="height: 42px; width: auto; overflow: visible;">
-                        <defs>
-                            <style>
-                                @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&display=swap');
-                            </style>
-                            <linearGradient id="topPlate" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#34d399" />
-                                <stop offset="100%" stop-color="#10b981" />
-                            </linearGradient>
-                            <linearGradient id="midPlate" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#60a5fa" />
-                                <stop offset="100%" stop-color="#3b82f6" />
-                            </linearGradient>
-                            <linearGradient id="botPlate" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#a78bfa" />
-                                <stop offset="100%" stop-color="#8b5cf6" />
-                            </linearGradient>
-                            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                                <feGaussianBlur stdDeviation="3" result="blur" />
-                                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                            </filter>
-                        </defs>
-                        <g transform="translate(15, 15)">
-                            <g filter="url(#glow)">
-                                <path d="M 40 10 L 75 25 L 40 40 L 5 25 Z" fill="url(#topPlate)"/>
-                                <path d="M 5 25 L 40 40 L 40 48 L 5 33 Z" fill="#059669"/>
-                                <path d="M 75 25 L 40 40 L 40 48 L 75 33 Z" fill="#047857"/>
+                    <!-- ANIMATED SVG LOGO (NAVBAR) -->
+                    <svg viewBox="0 0 580 180" style="height: 42px; width: auto; overflow: visible;">
+                        <circle cx="80" cy="90" r="60" fill="#10b981" filter="url(#ambientGlow)" opacity="0.15" />
+                        <circle cx="80" cy="50" r="40" fill="#3b82f6" filter="url(#ambientGlow)" opacity="0.1" />
+                        <g transform="translate(10, 5)">
+                            <g stroke="rgba(255,255,255,0.1)" stroke-width="1.5" stroke-dasharray="4, 4">
+                                <line x1="20" y1="35" x2="20" y2="125" />
+                                <line x1="140" y1="35" x2="140" y2="125" />
+                                <line x1="80" y1="65" x2="80" y2="155" />
                             </g>
-                            <g transform="translate(0, 22)">
-                                <path d="M 40 10 L 75 25 L 40 40 L 5 25 Z" fill="url(#midPlate)"/>
-                                <path d="M 5 25 L 40 40 L 40 48 L 5 33 Z" fill="#2563eb"/>
-                                <path d="M 75 25 L 40 40 L 40 48 L 75 33 Z" fill="#1d4ed8"/>
+                            <circle cx="20" cy="125" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
+                                <animate attributeName="cy" values="125;35;125" dur="4s" repeatCount="indefinite" />
+                                <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="140" cy="125" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
+                                <animate attributeName="cy" values="125;35;125" dur="4s" begin="2s" repeatCount="indefinite" />
+                                <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" begin="2s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="80" cy="155" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
+                                <animate attributeName="cy" values="155;65;155" dur="4s" begin="1s" repeatCount="indefinite" />
+                                <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" begin="1s" repeatCount="indefinite" />
+                            </circle>
+                            <g>
+                                <animateTransform attributeName="transform" type="translate" values="0,0; 0,2; 0,0" dur="6s" repeatCount="indefinite"/>
+                                <polygon points="80,90 140,120 80,150 20,120" fill="url(#glassBot)" stroke="#a78bfa" stroke-width="1.5" />
+                                <polygon points="20,120 80,150 80,162 20,132" fill="#6d28d9" />
+                                <polygon points="80,150 140,120 140,132 80,162" fill="#5b21b6" />
                             </g>
-                            <g transform="translate(0, 44)">
-                                <path d="M 40 10 L 75 25 L 40 40 L 5 25 Z" fill="url(#botPlate)"/>
-                                <path d="M 5 25 L 40 40 L 40 48 L 5 33 Z" fill="#7c3aed"/>
-                                <path d="M 75 25 L 40 40 L 40 48 L 75 33 Z" fill="#6d28d9"/>
+                            <g>
+                                <animateTransform attributeName="transform" type="translate" values="0,0; 0,-2; 0,0" dur="5s" repeatCount="indefinite"/>
+                                <polygon points="80,45 140,75 80,105 20,75" fill="url(#glassMid)" stroke="#60a5fa" stroke-width="1.5" />
+                                <polygon points="20,75 80,105 80,117 20,87" fill="#1d4ed8" />
+                                <polygon points="80,105 140,75 140,87 80,117" fill="#1e3a8a" />
+                            </g>
+                            <g class="anim-pulse">
+                                <animateTransform attributeName="transform" type="translate" values="0,0; 0,-4; 0,0" dur="4s" repeatCount="indefinite"/>
+                                <polygon points="80,0 140,30 80,60 20,30" fill="url(#glassTop)" stroke="#34d399" stroke-width="2" />
+                                <polygon points="80,15 110,30 80,45 50,30" fill="none" stroke="#6ee7b7" stroke-width="1.5" filter="url(#sharpGlow)" />
+                                <circle cx="80" cy="30" r="3" fill="#ffffff" filter="url(#sharpGlow)" />
+                                <polygon points="20,30 80,60 80,72 20,42" fill="#059669" />
+                                <polygon points="80,60 140,30 140,42 80,72" fill="#047857" />
                             </g>
                         </g>
-                        <text x="110" y="76" font-family="'JetBrains Mono', monospace" font-weight="700" letter-spacing="-1.5">
-                            <tspan fill="#ffffff" font-size="42">Stack</tspan>
-                            <tspan fill="#10b981" font-size="42">nomic</tspan>
-                            <tspan fill="#64748b" font-size="22">.io</tspan>
+                        <text x="175" y="112" filter="url(#textShadow)" letter-spacing="-1">
+                            <tspan fill="#f8fafc" font-size="68" font-family="'Inter', system-ui, sans-serif" font-weight="800">Stack</tspan>
+                            <tspan fill="#10b981" font-size="68" font-family="'JetBrains Mono', monospace" font-weight="700">nomic</tspan>
+                            <tspan fill="#64748b" font-size="32" font-family="'JetBrains Mono', monospace" font-weight="700" dy="-4">.io</tspan>
                         </text>
                     </svg>
                 </a>
@@ -645,38 +731,86 @@
                     <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name" class="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition">
                     <input type="email" name="email" placeholder="Business Email" required aria-label="Business Email" class="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition">
                     
-                    <!-- NEW: Phone Number with Country Code -->
+                    <!-- Phone Number with Country Code -->
                     <div class="flex gap-2">
                         <select name="country_code" aria-label="Country Code" class="w-1/3 bg-slate-900 border border-slate-600 rounded-lg px-3 py-3 text-white focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition appearance-none">
                             <option value="+91">🇮🇳 +91</option>
+                            <option value="+1">🇺🇸 +1</option>
+                            <option value="+44">🇬🇧 +44</option>
+                            <option value="+971">🇦🇪 +971</option>
+                        </select>
+                        <input type="tel" name="phone" placeholder="Phone Number" required aria-label="Phone Number" class="w-2/3 bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition">
+                    </div>
+
+                    <select name="industry" aria-label="Your Industry" class="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition appearance-none">
+                        <option value="" disabled selected>Select Your Industry</option>
+                        <option value="edtech">EdTech / Coaching Institute</option>
+                        <option value="fintech">FinTech / Consultancy</option>
+                        <option value="other">Other B2B</option>
+                    </select>
+                    
+                    <button type="submit" class="w-full bg-brand-primary hover:bg-emerald-400 text-gray-900 font-bold text-lg px-8 py-4 rounded-lg transition shadow-[0_0_20px_rgba(16,185,129,0.2)] mt-4">
+                        Request Discovery Call
+                    </button>
+                    <p class="text-xs text-gray-500 mt-4"><i class="fas fa-lock"></i> Your data is secure and will never be shared.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Important: pb-32 fixes the overlap issue with floating widgets -->
     <footer class="bg-slate-900 border-t border-slate-800 pt-16 pb-32 md:pb-24 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-8 md:mb-0 text-center md:text-left flex flex-col items-center md:items-start">
                     <a href="index.html" class="hover:opacity-80 transition-opacity mb-4 inline-block" aria-label="Stacknomic Home">
-                        <!-- SVG LOGO (FOOTER) - Inherits gradients from nav logo -->
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 120" style="height: 48px; width: auto; overflow: visible;">
-                            <g transform="translate(15, 15)">
-                                <g filter="url(#glow)">
-                                    <path d="M 40 10 L 75 25 L 40 40 L 5 25 Z" fill="url(#topPlate)"/>
-                                    <path d="M 5 25 L 40 40 L 40 48 L 5 33 Z" fill="#059669"/>
-                                    <path d="M 75 25 L 40 40 L 40 48 L 75 33 Z" fill="#047857"/>
+                        <!-- ANIMATED SVG LOGO (FOOTER) -->
+                        <svg viewBox="0 0 580 180" style="height: 48px; width: auto; overflow: visible;">
+                            <circle cx="80" cy="90" r="60" fill="#10b981" filter="url(#ambientGlow)" opacity="0.15" />
+                            <circle cx="80" cy="50" r="40" fill="#3b82f6" filter="url(#ambientGlow)" opacity="0.1" />
+                            <g transform="translate(10, 5)">
+                                <g stroke="rgba(255,255,255,0.1)" stroke-width="1.5" stroke-dasharray="4, 4">
+                                    <line x1="20" y1="35" x2="20" y2="125" />
+                                    <line x1="140" y1="35" x2="140" y2="125" />
+                                    <line x1="80" y1="65" x2="80" y2="155" />
                                 </g>
-                                <g transform="translate(0, 22)">
-                                    <path d="M 40 10 L 75 25 L 40 40 L 5 25 Z" fill="url(#midPlate)"/>
-                                    <path d="M 5 25 L 40 40 L 40 48 L 5 33 Z" fill="#2563eb"/>
-                                    <path d="M 75 25 L 40 40 L 40 48 L 75 33 Z" fill="#1d4ed8"/>
+                                <circle cx="20" cy="125" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
+                                    <animate attributeName="cy" values="125;35;125" dur="4s" repeatCount="indefinite" />
+                                    <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" repeatCount="indefinite" />
+                                </circle>
+                                <circle cx="140" cy="125" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
+                                    <animate attributeName="cy" values="125;35;125" dur="4s" begin="2s" repeatCount="indefinite" />
+                                    <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" begin="2s" repeatCount="indefinite" />
+                                </circle>
+                                <circle cx="80" cy="155" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
+                                    <animate attributeName="cy" values="155;65;155" dur="4s" begin="1s" repeatCount="indefinite" />
+                                    <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" begin="1s" repeatCount="indefinite" />
+                                </circle>
+                                <g>
+                                    <animateTransform attributeName="transform" type="translate" values="0,0; 0,2; 0,0" dur="6s" repeatCount="indefinite"/>
+                                    <polygon points="80,90 140,120 80,150 20,120" fill="url(#glassBot)" stroke="#a78bfa" stroke-width="1.5" />
+                                    <polygon points="20,120 80,150 80,162 20,132" fill="#6d28d9" />
+                                    <polygon points="80,150 140,120 140,132 80,162" fill="#5b21b6" />
                                 </g>
-                                <g transform="translate(0, 44)">
-                                    <path d="M 40 10 L 75 25 L 40 40 L 5 25 Z" fill="url(#botPlate)"/>
-                                    <path d="M 5 25 L 40 40 L 40 48 L 5 33 Z" fill="#7c3aed"/>
-                                    <path d="M 75 25 L 40 40 L 40 48 L 75 33 Z" fill="#6d28d9"/>
+                                <g>
+                                    <animateTransform attributeName="transform" type="translate" values="0,0; 0,-2; 0,0" dur="5s" repeatCount="indefinite"/>
+                                    <polygon points="80,45 140,75 80,105 20,75" fill="url(#glassMid)" stroke="#60a5fa" stroke-width="1.5" />
+                                    <polygon points="20,75 80,105 80,117 20,87" fill="#1d4ed8" />
+                                    <polygon points="80,105 140,75 140,87 80,117" fill="#1e3a8a" />
+                                </g>
+                                <g class="anim-pulse">
+                                    <animateTransform attributeName="transform" type="translate" values="0,0; 0,-4; 0,0" dur="4s" repeatCount="indefinite"/>
+                                    <polygon points="80,0 140,30 80,60 20,30" fill="url(#glassTop)" stroke="#34d399" stroke-width="2" />
+                                    <polygon points="80,15 110,30 80,45 50,30" fill="none" stroke="#6ee7b7" stroke-width="1.5" filter="url(#sharpGlow)" />
+                                    <circle cx="80" cy="30" r="3" fill="#ffffff" filter="url(#sharpGlow)" />
+                                    <polygon points="20,30 80,60 80,72 20,42" fill="#059669" />
+                                    <polygon points="80,60 140,30 140,42 80,72" fill="#047857" />
                                 </g>
                             </g>
-                            <text x="110" y="76" font-family="'JetBrains Mono', monospace" font-weight="700" letter-spacing="-1.5">
-                                <tspan fill="#ffffff" font-size="42">Stack</tspan>
-                                <tspan fill="#10b981" font-size="42">nomic</tspan>
-                                <tspan fill="#64748b" font-size="22">.io</tspan>
+                            <text x="175" y="112" filter="url(#textShadow)" letter-spacing="-1">
+                                <tspan fill="#f8fafc" font-size="68" font-family="'Inter', system-ui, sans-serif" font-weight="800">Stack</tspan>
+                                <tspan fill="#10b981" font-size="68" font-family="'JetBrains Mono', monospace" font-weight="700">nomic</tspan>
+                                <tspan fill="#64748b" font-size="32" font-family="'JetBrains Mono', monospace" font-weight="700" dy="-4">.io</tspan>
                             </text>
                         </svg>
                     </a>
