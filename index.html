@@ -358,9 +358,9 @@
                 </p>
                 
                 <form id="contactForm" class="relative z-10 max-w-md mx-auto space-y-4" onsubmit="initiateContact(event)">
-                    <!-- Web3Forms Access Key (Replace this string with your real key) -->
-                    <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY_HERE">
-                    <!-- Make sure input tags have 'name' attributes -->
+                    <!-- Web3Forms Access Key -->
+                    <input type="hidden" name="access_key" value="c193a6c1-2168-4be7-a774-a890d3cff489">
+                    
                     <input type="text" name="name" placeholder="Your Name" required class="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition">
                     <input type="email" name="email" placeholder="Business Email" required class="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition">
                     <select name="industry" class="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-gray-300 focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition appearance-none">
@@ -411,12 +411,6 @@
             const btn = form.querySelector('button[type="submit"]');
             const originalText = btn.innerHTML;
             
-            const accessKey = form.querySelector('input[name="access_key"]').value;
-            if (accessKey === "c193a6c1-2168-4be7-a774-a890d3cff489") {
-                showModal("Configuration Missing", "Please add your Web3Forms Access Key in the HTML code to receive emails.", false);
-                return;
-            }
-
             btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
             btn.classList.replace('bg-brand-primary', 'bg-slate-700');
             btn.classList.replace('text-gray-900', 'text-white');
