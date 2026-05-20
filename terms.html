@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | Stacknomic</title>
+    <meta name="description" content="Terms of Service for Stacknomic - Digital Infrastructure Agency.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0f172a',
+                            card: '#1e293b',
+                            primary: '#10b981',
+                            secondary: '#3b82f6',
+                            accent: '#8b5cf6'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, #10b981, #3b82f6);
+        }
+        .policy-content h2 {
+            color: #f8fafc;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 0.5rem;
+        }
+        .policy-content p, .policy-content ul {
+            color: #94a3b8;
+            line-height: 1.75;
+            margin-bottom: 1rem;
+        }
+        .policy-content ul {
+            list-style-type: decimal;
+            padding-left: 1.5rem;
+        }
+        .policy-content li {
+            margin-bottom: 0.5rem;
+        }
+        .policy-content strong {
+            color: #e2e8f0;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-primary selection:text-white">
+
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex-shrink-0 flex items-center cursor-pointer hover:opacity-80 transition-opacity">
+                    <div class="text-2xl font-bold font-mono tracking-tighter">
+                        <span class="text-white">Stack</span><span class="text-brand-primary">nomic</span><span class="text-gray-500 text-lg">.io</span>
+                    </div>
+                </a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html" class="text-gray-300 hover:text-white transition px-3 py-2 text-sm font-medium"><i class="fas fa-arrow-left mr-2"></i>Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-12 lg:pt-40 border-b border-slate-800 bg-slate-900/50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Terms of <span class="gradient-text">Service</span></h1>
+            <p class="text-gray-400 font-mono text-sm">Last Updated: May 20, 2026</p>
+        </div>
+    </section>
+
+    <main class="py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 policy-content">
+            
+            <p>Welcome to Stacknomic. These Terms of Service ("Terms") govern your use of the Stacknomic website and the custom digital infrastructure, web application development, and Fractional CTO services provided by Stacknomic Systems ("we", "us", or "our").</p>
+            <p>By accessing our website or engaging our services, you agree to be bound by these Terms. If you do not agree, please refrain from using our services.</p>
+
+            <h2>1. Service Offerings</h2>
+            <p>Stacknomic provides bespoke web architecture primarily for EdTech and FinTech businesses. Our services include, but are not limited to:</p>
+            <ul>
+                <li>Custom React frontend development.</li>
+                <li>Serverless Edge network deployment (via Cloudflare, Vercel, AWS).</li>
+                <li>API integration and JSON-driven database architecture.</li>
+                <li>Ongoing technical maintenance (Fractional CTO retainers).</li>
+            </ul>
+
+            <h2>2. Intellectual Property (IP) & Code Ownership</h2>
+            <p>We believe businesses should own their digital assets. Therefore, our IP transfer policy is strictly defined as follows:</p>
+            <ul>
+                <li><strong>Upon Full Payment:</strong> Once a project invoice is paid in full, 100% of the custom source code, frontend assets, and JSON architectures created specifically for your project are transferred to your business. You become the sole owner of the Intellectual Property.</li>
+                <li><strong>Pre-existing Libraries:</strong> Any open-source libraries, frameworks (e.g., React, Tailwind), or proprietary boilerplate code utilized during development remain under their respective original licenses.</li>
+                <li><strong>Default/Non-Payment:</strong> If a client fails to clear the final project invoice, Stacknomic retains all rights to the code and reserves the right to withhold deployment or transfer of assets.</li>
+            </ul>
+
+            <h2>3. Third-Party Edge Infrastructure</h2>
+            <p>Stacknomic builds applications designed to operate on "Zero-Overhead" edge networks. You acknowledge that:</p>
+            <ul>
+                <li>We utilize third-party platforms such as Cloudflare, Vercel, and AWS to host your applications.</li>
+                <li>While these platforms offer highly generous free tiers, any future costs incurred due to exceeding these free tiers (e.g., massive traffic spikes) are the sole responsibility of the client.</li>
+                <li>Stacknomic is not liable for any downtime, data loss, or service interruptions caused directly by outages at these third-party infrastructure providers.</li>
+            </ul>
+
+            <h2>4. Fractional CTO & Maintenance Retainers</h2>
+            <p>For clients engaged in a monthly Fractional CTO agreement:</p>
+            <ul>
+                <li>Services are provided on a month-to-month basis unless a longer term is specified in your Detailed Project Report (DPR) or contract.</li>
+                <li>Either party may terminate the monthly retainer with a 30-day written notice.</li>
+                <li>Stacknomic will ensure the continued functionality, security patching, and minor feature updates of your platform as outlined in your specific SLA (Service Level Agreement).</li>
+            </ul>
+
+            <h2>5. Limitation of Liability</h2>
+            <p>To the maximum extent permitted by applicable law, Stacknomic shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from:</p>
+            <ul>
+                <li>Your access to or use of or inability to access or use the deployed software.</li>
+                <li>Any conduct or content of any third party on the services.</li>
+                <li>Any unauthorized access, use, or alteration of your transmissions or content.</li>
+            </ul>
+
+            <h2>6. Governing Law</h2>
+            <p>These Terms shall be governed and construed in accordance with the laws of India, specifically within the jurisdiction of the courts of Jammu & Kashmir, without regard to its conflict of law provisions.</p>
+
+            <h2>7. Contact Information</h2>
+            <p>If you have any questions or require clarification regarding these Terms of Service prior to signing a contract, please contact us:</p>
+            <ul>
+                <li>Email: legal@stacknomic.io</li>
+                <li>Website: www.stacknomic.io</li>
+            </ul>
+            
+        </div>
+    </main>
+
+    <footer class="bg-slate-900 border-t border-slate-800 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0">
+                    <div class="text-2xl font-bold font-mono tracking-tighter mb-2">
+                        <span class="text-white">Stack</span><span class="text-brand-primary">nomic</span><span class="text-gray-500 text-lg">.io</span>
+                    </div>
+                    <p class="text-sm text-gray-500">Zero-overhead infrastructure for modern businesses.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-white transition text-xl"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-white transition text-xl"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-white transition text-xl"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-600 text-sm">© 2026 Stacknomic Systems. All rights reserved.</p>
+                <div class="flex space-x-4 mt-4 md:mt-0 text-sm text-gray-600">
+                    <a href="privacy.html" class="hover:text-gray-300">Privacy Policy</a>
+                    <a href="terms.html" class="hover:text-gray-300">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
