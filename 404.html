@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | Stacknomic</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0f172a',
+                            primary: '#10b981',
+                            secondary: '#3b82f6',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            overflow: hidden; /* Prevent scroll on 404 */
+        }
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, #10b981, #3b82f6);
+        }
+        .glitch-wrapper {
+            position: relative;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-primary selection:text-white h-screen flex flex-col">
+
+    <nav class="fixed w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex-shrink-0 flex items-center cursor-pointer hover:opacity-80 transition">
+                    <div class="text-2xl font-bold font-mono tracking-tighter">
+                        <span class="text-white">Stack</span><span class="text-brand-primary">nomic</span><span class="text-gray-500 text-lg">.io</span>
+                    </div>
+                </a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html" class="text-gray-300 hover:text-white transition px-3 py-2 text-sm font-medium"><i class="fas fa-arrow-left mr-2"></i>Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow flex items-center justify-center relative relative overflow-hidden">
+        <!-- Background decorative blobs -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-primary rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-pulse-slow"></div>
+
+        <div class="text-center z-10 px-4">
+            <div class="glitch-wrapper mb-6 animate-float">
+                <h1 class="text-8xl md:text-9xl font-extrabold font-mono tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-slate-700 to-slate-500 opacity-20 absolute -inset-1 blur-sm select-none">404</h1>
+                <h1 class="text-8xl md:text-9xl font-extrabold font-mono tracking-tighter gradient-text relative select-none">404</h1>
+            </div>
+            
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">Lost in the Edge Network.</h2>
+            <p class="text-gray-400 max-w-lg mx-auto text-lg mb-10">
+                The page you are looking for has been moved, deleted, or never existed in this timeline.
+            </p>
+            
+            <a href="index.html" class="inline-flex items-center justify-center bg-brand-primary hover:bg-emerald-400 text-gray-900 px-8 py-4 rounded-full font-bold text-lg transition shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] hover:-translate-y-1 gap-2">
+                <i class="fas fa-home"></i> Return to Base
+            </a>
+        </div>
+    </main>
+
+</body>
+</html>
