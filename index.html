@@ -39,6 +39,10 @@
     }
     </script>
 
+    <!-- Vercel Analytics & Speed Insights (Static HTML Method) -->
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
+
     <!-- Performance Pre-connects -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -146,7 +150,8 @@
 <body class="antialiased selection:bg-brand-primary selection:text-white">
 
     <!-- GLOBAL SVG DEFINITIONS ENGINE (Prevents duplicate IDs and keeps code clean) -->
-    <svg width="0" height="0" class="hidden absolute" aria-hidden="true">
+    <!-- FIX: Removed Tailwind 'hidden' (display:none) which causes browsers to hide SVG text filters. Used absolute zero-sizing instead. -->
+    <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none;">
         <defs>
             <filter id="ambientGlow" x="-50%" y="-50%" width="200%" height="200%">
                 <feGaussianBlur stdDeviation="25" result="blur" />
