@@ -633,12 +633,39 @@
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
             if (window.scrollY > 20) {
-                nav.classList.add('shadow-lg', 'bg-slate-900/90');
-                nav.classList.remove('bg-slate-900/70');
+                nav.classList.add('shadow-lg', 'bg-slate-900/95');
+                nav.classList.remove('bg-slate-900/70', 'glass-nav');
             } else {
-                nav.classList.remove('shadow-lg', 'bg-slate-900/90');
-                nav.classList.add('bg-slate-900/70');
+                nav.classList.remove('shadow-lg', 'bg-slate-900/95');
+                nav.classList.add('bg-slate-900/70', 'glass-nav');
             }
+        });
+
+        // Mobile Menu Toggle Logic
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuBtn.querySelector('i');
+            
+            // Toggle hamburger / close icon
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+
+        // Close mobile menu automatically when a link is clicked
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuBtn.querySelector('i').classList.replace('fa-times', 'fa-bars');
+            });
         });
     </script>
 </body>
