@@ -45,6 +45,18 @@
             70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
             100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
         }
+        
+        /* Select dropdown styling */
+        select option {
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        select optgroup {
+            background-color: #1e293b;
+            color: #10b981;
+            font-style: normal;
+            font-weight: 700;
+        }
     </style>
 </head>
 <body class="min-h-screen p-4 md:p-8 flex justify-center items-start selection:bg-brand-primary selection:text-white" onload="loadSavedData()">
@@ -109,15 +121,15 @@
                                 <input type="text" id="prospectName" placeholder="e.g. Rahul" onkeyup="updatePreview(); saveData();" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition shadow-inner">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-gray-400 mb-1">Target Website</label>
-                                <input type="text" id="targetWebsite" placeholder="institute.com" onkeyup="updatePreview(); saveData();" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition font-mono text-sm shadow-inner">
+                                <label class="block text-xs font-semibold text-gray-400 mb-1">Target Website / Social Handle</label>
+                                <input type="text" id="targetWebsite" placeholder="e.g. @username" onkeyup="updatePreview(); saveData();" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition font-mono text-sm shadow-inner">
                             </div>
                         </div>
 
                         <div>
                             <label class="block text-xs font-semibold text-gray-400 mb-1">Current Tech Stack (Optional)</label>
                             <input type="text" id="currentTool" placeholder="e.g. WordPress, AWS, Shopify" onkeyup="updatePreview(); saveData();" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-brand-accent focus:ring-1 focus:ring-brand-accent outline-none transition shadow-inner text-sm">
-                            <p class="text-[10px] text-gray-500 mt-1">If filled, this hyper-personalizes the pitch.</p>
+                            <p class="text-[10px] text-gray-500 mt-1">Leave blank if they don't have a website yet.</p>
                         </div>
                     </div>
 
@@ -125,14 +137,28 @@
                         <label class="block text-sm font-bold text-brand-secondary mb-2 border-b border-slate-700 pb-2">3. Strategy / Angle</label>
                         <select id="templateSelect" onchange="loadTemplate(); saveData();" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-brand-secondary focus:ring-1 focus:ring-brand-secondary outline-none transition appearance-none font-semibold cursor-pointer shadow-inner">
                             <option value="custom">Custom (Write manually)</option>
-                            <option value="edtech">EdTech / Coaching Institute (Cold)</option>
-                            <option value="fintech">FinTech / Consultancy (Cold)</option>
-                            <option value="photographer">Photographers / Creatives (Cold)</option>
-                            <option value="realestate">Real Estate / Agencies (Cold)</option>
-                            <option value="ecommerce">E-commerce / D2C (Cold)</option>
-                            <option value="localbiz">Local Business / General (Cold)</option>
-                            <option value="audit">Free Tech Audit Offer</option>
-                            <option value="followup">Gentle Follow-Up</option>
+                            
+                            <optgroup label="Prospect DOES NOT have a Website (Social Only)">
+                                <option value="photographer_no_site">Photographers / Creatives (IG Only)</option>
+                                <option value="ig_store">Instagram/Social E-commerce</option>
+                                <option value="localbiz_no_site">Local Services (Plumbers, Salons, etc)</option>
+                                <option value="freelancer">Freelancers / Consultants</option>
+                                <option value="generic_no_site">Generic Business (No Site)</option>
+                            </optgroup>
+
+                            <optgroup label="Prospect HAS a Website (Replacement Pitch)">
+                                <option value="edtech">EdTech / Coaching Institute</option>
+                                <option value="fintech">FinTech / Consultancy</option>
+                                <option value="photographer">Photographers / Creatives (Has Site)</option>
+                                <option value="realestate">Real Estate / Agencies (Has Site)</option>
+                                <option value="ecommerce">E-commerce / D2C (Has Site)</option>
+                                <option value="localbiz">Local Business (Has Site)</option>
+                            </optgroup>
+                            
+                            <optgroup label="Follow-Ups & Audits">
+                                <option value="audit">Free Tech Audit Offer</option>
+                                <option value="followup">Gentle Follow-Up</option>
+                            </optgroup>
                         </select>
                     </div>
                 </div>
@@ -174,6 +200,80 @@
 
         const templates = {
             custom: { subject: "", body: "" },
+            
+            // --- NO WEBSITE TEMPLATES ---
+            photographer_no_site: {
+                subject: "Your photography on {website} - custom portfolio",
+                body: `Hi {name},
+
+I came across your work on {website} and was blown away by your photography. 
+
+I noticed you don't have a dedicated portfolio website yet. Relying solely on social media means dealing with image compression and algorithmic reach drops. My agency, Stacknomic, builds ultra-fast, premium portfolio sites that allow you to display high-res galleries and book clients directly—with zero monthly hosting fees.
+
+Would you be open to a quick chat to see how a professional site could help you land higher-paying gigs?
+
+Best,
+Stacknomic Systems
+https://stacknomic.io`
+            },
+            localbiz_no_site: {
+                subject: "Customers are looking for {name} online",
+                body: `Hi {name},
+
+I was looking for local services today and found your profile on {website}. 
+
+I noticed your business doesn't have an official website yet. Right now, when potential customers search Google for your exact services, they are likely finding your competitors instead. We build lightning-fast, high-converting websites for growing businesses with exactly ₹0 in monthly hosting fees.
+
+Do you have 5 minutes this week to discuss getting your business ranked on Google?
+
+Best,
+Stacknomic Systems
+https://stacknomic.io`
+            },
+            ig_store: {
+                subject: "Scaling your store beyond {website}",
+                body: `Hi {name},
+
+I love the products you're selling on {website}. 
+
+Managing orders through DMs and comments gets overwhelming as you grow. At Stacknomic, we build bespoke e-commerce storefronts that automate your sales, inventory, and payments. The best part? We build on Edge networks, meaning you pay ₹0 in monthly server fees and keep 100% of your revenue instead of paying SaaS platforms like Shopify.
+
+Are you open to a brief chat about moving your brand to a custom storefront?
+
+Best,
+Stacknomic Systems
+https://stacknomic.io`
+            },
+            freelancer: {
+                subject: "Upgrading your professional presence",
+                body: `Hi {name},
+
+I found your profile on {website} and was really impressed by your background and services.
+
+To command premium rates, top consultants are moving their digital presence from standard social profiles to custom web assets. We specialize in building lightning-fast personal branding sites that serve as 24/7 lead generators, operating with zero monthly hosting costs.
+
+Would you be open to a quick 5-minute chat to discuss building a dedicated platform for your services?
+
+Best,
+Stacknomic Systems
+https://stacknomic.io`
+            },
+            generic_no_site: {
+                subject: "A dedicated website for {name}",
+                body: `Hi {name},
+
+I came across your business via {website} and love what you're doing.
+
+I noticed you don't have a custom website yet. My agency, Stacknomic, helps growing businesses establish a premium digital footprint. We build ultra-fast web applications and landing pages that cost exactly ₹0 in monthly server fees.
+
+Would you be open to a quick chat to see how a professional digital asset could help capture more leads for your business?
+
+Best,
+Stacknomic Systems
+https://stacknomic.io`
+            },
+
+            // --- HAS WEBSITE TEMPLATES ---
             edtech: {
                 subject: "Question about {website} / Hosting costs",
                 body: `Hi {name},
@@ -258,6 +358,8 @@ Best,
 Stacknomic Systems
 https://stacknomic.io`
             },
+
+            // --- AUDIT & FOLLOW UP ---
             audit: {
                 subject: "Free architecture audit for {website}",
                 body: `Hi {name},
@@ -325,13 +427,13 @@ Stacknomic`
         function updatePreview() {
             const templateKey = document.getElementById('templateSelect').value;
             let name = document.getElementById('prospectName').value || "[Name]";
-            let website = document.getElementById('targetWebsite').value || "[Website]";
+            let website = document.getElementById('targetWebsite').value || "[Website/Handle]";
             let tool = document.getElementById('currentTool').value;
             
             // Default tool wording if left blank
             if(!tool) tool = "your current setup";
             
-            // Clean up URL if they pasted https://
+            // Clean up URL if they pasted https:// (leaves handles like @username alone)
             website = website.replace(/^https?:\/\//, '').replace(/\/$/, '');
 
             if (templateKey !== 'custom') {
