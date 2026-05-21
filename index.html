@@ -770,9 +770,10 @@
                 </p>
                 
                 <form id="contactForm" class="relative z-10 max-w-md mx-auto space-y-4" onsubmit="initiateContact(event)">
-                    <!-- Web3Forms Access Key -->
-                    <input type="hidden" name="access_key" value="cda3fe19-f0a9-4739-803e-6b398e2eb9c8">
-                    <input type="hidden" name="subject" value="New Lead from Stacknomic.io">
+                    <!-- FormSubmit Configuration -->
+                    <input type="hidden" name="_subject" value="New Lead from Stacknomic.io">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="text" name="_honey" style="display:none">
                     
                     <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name" class="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition">
                     <input type="email" name="email" placeholder="Business Email" required aria-label="Business Email" class="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition">
@@ -989,7 +990,8 @@
             const json = JSON.stringify(object);
 
             try {
-                const response = await fetch("https://api.web3forms.com/submit", {
+                // FormSubmit AJAX Endpoint
+                const response = await fetch("https://formsubmit.co/ajax/stacknomic@gmail.com", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
