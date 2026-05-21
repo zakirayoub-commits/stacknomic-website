@@ -40,8 +40,8 @@
     </script>
 
     <!-- Vercel Analytics & Speed Insights (Static HTML Method) -->
-    <script defer src="/_vercel/insights/script.js"></script>
-    <script defer src="/_vercel/speed-insights/script.js"></script>
+    <script src="/_vercel/insights/script.js"></script>
+    <script src="/_vercel/speed-insights/script.js"></script>
 
     <!-- Performance Pre-connects -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -773,6 +773,7 @@
                     <!-- FormSubmit Configuration -->
                     <input type="hidden" name="_subject" value="New Lead from Stacknomic.io">
                     <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
                     <input type="text" name="_honey" style="display:none">
                     
                     <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name" class="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition">
@@ -987,6 +988,12 @@
             
             const formData = new FormData(form);
             const object = Object.fromEntries(formData);
+            
+            // Map the provided email to _replyto so you can directly reply to the user from your inbox
+            if (object.email) {
+                object['_replyto'] = object.email;
+            }
+            
             const json = JSON.stringify(object);
 
             try {
@@ -1005,11 +1012,11 @@
                 if (response.status == 200) {
                     showModal("Call Requested", "We will email you within 24 hours to schedule a technical discovery call.", true);
                 } else {
-                    showModal("Error", "Something went wrong! Please try again later.", false);
+                    showModal("Error", "Something went wrong! Please email us directly at <a href='mailto:stacknomic@gmail.com' class='text-brand-primary font-bold underline'>stacknomic@gmail.com</a>", false);
                     resetBtn(btn, originalText);
                 }
             } catch (error) {
-                showModal("Error", "Network error! Please try again later.", false);
+                showModal("Error", "Network error! Please email us directly at <a href='mailto:stacknomic@gmail.com' class='text-brand-primary font-bold underline'>stacknomic@gmail.com</a>", false);
                 resetBtn(btn, originalText);
             }
         }
