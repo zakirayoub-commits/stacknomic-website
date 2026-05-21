@@ -10,7 +10,6 @@
     <meta name="keywords" content="EdTech infrastructure, FinTech web apps, Zero hosting cost, Serverless architecture, Cloudflare Workers, Custom LMS, Fractional CTO, Web Development Agency">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://stacknomic.io">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     
     <!-- Open Graph for Social Sharing -->
     <meta property="og:title" content="Stacknomic | Zero-Overhead Digital Infrastructure">
@@ -180,134 +179,80 @@
         </defs>
     </svg>
 
-        <!-- PRELOADER -->
-        <div id="preloader" class="fixed inset-0 z-[100] bg-slate-950 flex flex-col items-center justify-center transition-opacity duration-700">
-            <div class="h-24 md:h-32 mb-10 flex items-center justify-center">
-                <!-- FULL ANIMATED SVG LOGO -->
-<svg id="stacknomic-preloader-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 180" width="100%" height="100%" style="max-width: 580px; overflow: visible;">
-            <defs>
-                <style>
-                    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@800&family=JetBrains+Mono:wght@700&display=swap');
-                    .anim-pulse { animation: pulseGlow 3s infinite alternate; }
-                    @keyframes pulseGlow {
-                        0% { filter: drop-shadow(0 0 10px rgba(16,185,129,0.2)); }
-                        100% { filter: drop-shadow(0 0 25px rgba(16,185,129,0.6)); }
-                    }
-                </style>
+    <!-- PRELOADER -->
+    <div id="preloader" class="fixed inset-0 z-[100] bg-slate-950 flex flex-col items-center justify-center transition-opacity duration-700">
+        <div class="h-24 md:h-32 mb-10 flex items-center justify-center">
+            <!-- FULL ANIMATED SVG LOGO -->
+            <svg id="stacknomic-preloader-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 180" width="100%" height="100%" style="max-width: 580px; overflow: visible;">
+                <defs>
+                    <style>
+                        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@800&family=JetBrains+Mono:wght@700&display=swap');
+                    </style>
+                </defs>
 
-                <!-- Core Glow Filters -->
-                <filter id="ambientGlow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="25" result="blur"/>
-                    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-                </filter>
-                <filter id="sharpGlow" x="-20%" y="-20%" width="140%" height="140%">
-                    <feGaussianBlur stdDeviation="4" result="blur"/>
-                    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-                </filter>
-                <filter id="textShadow">
-                    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
-                </filter>
+                <!-- Background Ambient Aura -->
+                <circle cx="80" cy="90" r="60" fill="#10b981" filter="url(#ambientGlow)" opacity="0.15"/>
+                <circle cx="80" cy="50" r="40" fill="#3b82f6" filter="url(#ambientGlow)" opacity="0.1"/>
 
-                <!-- Glassmorphism Gradients for Top Faces -->
-                <linearGradient id="glassTop" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#34d399" stop-opacity="0.4"/>
-                    <stop offset="100%" stop-color="#10b981" stop-opacity="0.05"/>
-                </linearGradient>
-                <linearGradient id="glassMid" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#60a5fa" stop-opacity="0.3"/>
-                    <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.05"/>
-                </linearGradient>
-                <linearGradient id="glassBot" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.3"/>
-                    <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.05"/>
-                </linearGradient>
-            </defs>
-
-            <!-- Background Ambient Aura -->
-            <circle cx="80" cy="90" r="60" fill="#10b981" filter="url(#ambientGlow)" opacity="0.15"/>
-            <circle cx="80" cy="50" r="40" fill="#3b82f6" filter="url(#ambientGlow)" opacity="0.1"/>
-
-            <g transform="translate(10, 5)">
-                
-                <!-- Vertical Data Lines (Connecting the stack) -->
-                <g stroke="rgba(255,255,255,0.1)" stroke-width="1.5" stroke-dasharray="4, 4">
-                    <line x1="20" y1="35" x2="20" y2="125"/>
-                    <line x1="140" y1="35" x2="140" y2="125"/>
-                    <line x1="80" y1="65" x2="80" y2="155"/>
-                </g>
-
-                <!-- Animated Data Nodes moving UP -->
-                <circle cx="20" cy="125" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
-                    <animate attributeName="cy" values="125;35;125" dur="4s" repeatCount="indefinite"/>
-                    <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="140" cy="125" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
-                    <animate attributeName="cy" values="125;35;125" dur="4s" begin="2s" repeatCount="indefinite"/>
-                    <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" begin="2s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="80" cy="155" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
-                    <animate attributeName="cy" values="155;65;155" dur="4s" begin="1s" repeatCount="indefinite"/>
-                    <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" begin="1s" repeatCount="indefinite"/>
-                </circle>
-
-                <!-- ================= LAYER 3 (BOTTOM - VIOLET) ================= -->
-                <!-- Translates slightly down & up to simulate floating -->
-                <g>
-                    <animateTransform attributeName="transform" type="translate" values="0,0; 0,2; 0,0" dur="6s" repeatCount="indefinite"/>
-                    <!-- Top Glass Face -->
-                    <polygon points="80,90 140,120 80,150 20,120" fill="url(#glassBot)" stroke="#a78bfa" stroke-width="1.5"/>
-                    <!-- Left Solid Face -->
-                    <polygon points="20,120 80,150 80,162 20,132" fill="#6d28d9"/>
-                    <!-- Right Solid Face -->
-                    <polygon points="80,150 140,120 140,132 80,162" fill="#5b21b6"/>
-                </g>
-
-                <!-- ================= LAYER 2 (MIDDLE - BLUE) ================= -->
-                <g>
-                    <animateTransform attributeName="transform" type="translate" values="0,0; 0,-2; 0,0" dur="5s" repeatCount="indefinite"/>
-                    <!-- Top Glass Face -->
-                    <polygon points="80,45 140,75 80,105 20,75" fill="url(#glassMid)" stroke="#60a5fa" stroke-width="1.5"/>
-                    <!-- Circuit Grid Lines on Mid Face -->
-                    <polyline points="50,60 80,75 110,60" fill="none" stroke="#93c5fd" stroke-width="1" opacity="0.3"/>
-                    <polyline points="50,90 80,75 110,90" fill="none" stroke="#93c5fd" stroke-width="1" opacity="0.3"/>
-                    <!-- Left Solid Face -->
-                    <polygon points="20,75 80,105 80,117 20,87" fill="#1d4ed8"/>
-                    <!-- Right Solid Face -->
-                    <polygon points="80,105 140,75 140,87 80,117" fill="#1e3a8a"/>
-                </g>
-
-                <!-- ================= LAYER 1 (TOP - EMERALD) ================= -->
-                <g class="anim-pulse">
-                    <animateTransform attributeName="transform" type="translate" values="0,0; 0,-4; 0,0" dur="4s" repeatCount="indefinite"/>
-                    <!-- Top Glass Face -->
-                    <polygon points="80,0 140,30 80,60 20,30" fill="url(#glassTop)" stroke="#34d399" stroke-width="2"/>
+                <g transform="translate(10, 5)">
                     
-                    <!-- Inner Glowing CPU Outline -->
-                    <polygon points="80,15 110,30 80,45 50,30" fill="none" stroke="#6ee7b7" stroke-width="1.5" filter="url(#sharpGlow)"/>
-                    <!-- Center CPU Dot -->
-                    <circle cx="80" cy="30" r="3" fill="#ffffff" filter="url(#sharpGlow)"/>
+                    <!-- Vertical Data Lines -->
+                    <g stroke="rgba(255,255,255,0.1)" stroke-width="1.5" stroke-dasharray="4, 4">
+                        <line x1="20" y1="35" x2="20" y2="125"/>
+                        <line x1="140" y1="35" x2="140" y2="125"/>
+                        <line x1="80" y1="65" x2="80" y2="155"/>
+                    </g>
 
-                    <!-- Left Solid Face -->
-                    <polygon points="20,30 80,60 80,72 20,42" fill="#059669"/>
-                    <!-- Right Solid Face -->
-                    <polygon points="80,60 140,30 140,42 80,72" fill="#047857"/>
+                    <!-- Animated Data Nodes -->
+                    <circle cx="20" cy="125" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
+                        <animate attributeName="cy" values="125;35;125" dur="4s" repeatCount="indefinite"/>
+                        <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="140" cy="125" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
+                        <animate attributeName="cy" values="125;35;125" dur="4s" begin="2s" repeatCount="indefinite"/>
+                        <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" begin="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="80" cy="155" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
+                        <animate attributeName="cy" values="155;65;155" dur="4s" begin="1s" repeatCount="indefinite"/>
+                        <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" begin="1s" repeatCount="indefinite"/>
+                    </circle>
+
+                    <!-- LAYER 3 (BOTTOM) -->
+                    <g>
+                        <animateTransform attributeName="transform" type="translate" values="0,0; 0,2; 0,0" dur="6s" repeatCount="indefinite"/>
+                        <polygon points="80,90 140,120 80,150 20,120" fill="url(#glassBot)" stroke="#a78bfa" stroke-width="1.5"/>
+                        <polygon points="20,120 80,150 80,162 20,132" fill="#6d28d9"/>
+                        <polygon points="80,150 140,120 140,132 80,162" fill="#5b21b6"/>
+                    </g>
+
+                    <!-- LAYER 2 (MIDDLE) -->
+                    <g>
+                        <animateTransform attributeName="transform" type="translate" values="0,0; 0,-2; 0,0" dur="5s" repeatCount="indefinite"/>
+                        <polygon points="80,45 140,75 80,105 20,75" fill="url(#glassMid)" stroke="#60a5fa" stroke-width="1.5"/>
+                        <polyline points="50,60 80,75 110,60" fill="none" stroke="#93c5fd" stroke-width="1" opacity="0.3"/>
+                        <polyline points="50,90 80,75 110,90" fill="none" stroke="#93c5fd" stroke-width="1" opacity="0.3"/>
+                        <polygon points="20,75 80,105 80,117 20,87" fill="#1d4ed8"/>
+                        <polygon points="80,105 140,75 140,87 80,117" fill="#1e3a8a"/>
+                    </g>
+
+                    <!-- LAYER 1 (TOP) -->
+                    <g class="anim-pulse">
+                        <animateTransform attributeName="transform" type="translate" values="0,0; 0,-4; 0,0" dur="4s" repeatCount="indefinite"/>
+                        <polygon points="80,0 140,30 80,60 20,30" fill="url(#glassTop)" stroke="#34d399" stroke-width="2"/>
+                        <polygon points="80,15 110,30 80,45 50,30" fill="none" stroke="#6ee7b7" stroke-width="1.5" filter="url(#sharpGlow)"/>
+                        <circle cx="80" cy="30" r="3" fill="#ffffff" filter="url(#sharpGlow)"/>
+                        <polygon points="20,30 80,60 80,72 20,42" fill="#059669"/>
+                        <polygon points="80,60 140,30 140,42 80,72" fill="#047857"/>
+                    </g>
                 </g>
-            </g>
 
-            <!-- ================= TYPOGRAPHY ================= -->
-            <!-- Positioned exactly to align with the 3D stack, using native OS sans-serif fallback to Inter -->
-            <text x="175" y="112" filter="url(#textShadow)" letter-spacing="-1">
-                <!-- "Stack" (Bold, White, Sans-Serif) -->
-                <tspan fill="#f8fafc" font-size="68" font-family="'Inter', system-ui, sans-serif" font-weight="800">Stack</tspan>
-                
-                <!-- "nomic" (Bold, Emerald, Monospace) -->
-                <tspan fill="#10b981" font-size="68" font-family="'JetBrains Mono', monospace" font-weight="700">nomic</tspan>
-                
-                <!-- ".io" (Small, Slate, Monospace) -->
-                <tspan fill="#64748b" font-size="32" font-family="'JetBrains Mono', monospace" font-weight="700" dy="-4">.io</tspan>
-            </text>
-
-        </svg>
+                <!-- TYPOGRAPHY -->
+                <text x="175" y="112" filter="url(#textShadow)" letter-spacing="-1">
+                    <tspan fill="#f8fafc" font-size="68" font-family="'Inter', system-ui, sans-serif" font-weight="800">Stack</tspan>
+                    <tspan fill="#10b981" font-size="68" font-family="'JetBrains Mono', monospace" font-weight="700">nomic</tspan>
+                    <tspan fill="#64748b" font-size="32" font-family="'JetBrains Mono', monospace" font-weight="700" dy="-4">.io</tspan>
+                </text>
+            </svg>
         </div>
         <div class="font-mono text-xs text-brand-primary tracking-widest uppercase animate-pulse">Booting Edge Network...</div>
     </div>
@@ -317,130 +262,75 @@
             <div class="flex justify-between items-center h-20">
                 <a href="index.html" class="flex-shrink-0 flex items-center cursor-pointer hover:opacity-80 transition-opacity" aria-label="Stacknomic Home">
                     <!-- ANIMATED SVG LOGO (NAVBAR) -->
- <svg id="stacknomic-nav-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 180" width="100%" height="60px" style="max-width: 580px; overflow: visible;">
-            <defs>
-                <style>
-                    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@800&family=JetBrains+Mono:wght@700&display=swap');
-                    .anim-pulse { animation: pulseGlow 3s infinite alternate; }
-                    @keyframes pulseGlow {
-                        0% { filter: drop-shadow(0 0 10px rgba(16,185,129,0.2)); }
-                        100% { filter: drop-shadow(0 0 25px rgba(16,185,129,0.6)); }
-                    }
-                </style>
+                    <svg id="stacknomic-nav-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 180" width="100%" height="100%" style="max-width: 580px; overflow: visible;">
+                        <defs>
+                            <style>
+                                @import url('https://fonts.googleapis.com/css2?family=Inter:wght@800&family=JetBrains+Mono:wght@700&display=swap');
+                            </style>
+                        </defs>
 
-                <!-- Core Glow Filters -->
-                <filter id="ambientGlow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="25" result="blur"/>
-                    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-                </filter>
-                <filter id="sharpGlow" x="-20%" y="-20%" width="140%" height="140%">
-                    <feGaussianBlur stdDeviation="4" result="blur"/>
-                    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-                </filter>
-                <filter id="textShadow">
-                    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
-                </filter>
+                        <!-- Background Ambient Aura -->
+                        <circle cx="80" cy="90" r="60" fill="#10b981" filter="url(#ambientGlow)" opacity="0.15"/>
+                        <circle cx="80" cy="50" r="40" fill="#3b82f6" filter="url(#ambientGlow)" opacity="0.1"/>
 
-                <!-- Glassmorphism Gradients for Top Faces -->
-                <linearGradient id="glassTop" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#34d399" stop-opacity="0.4"/>
-                    <stop offset="100%" stop-color="#10b981" stop-opacity="0.05"/>
-                </linearGradient>
-                <linearGradient id="glassMid" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#60a5fa" stop-opacity="0.3"/>
-                    <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.05"/>
-                </linearGradient>
-                <linearGradient id="glassBot" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.3"/>
-                    <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.05"/>
-                </linearGradient>
-            </defs>
+                        <g transform="translate(10, 5)">
+                            <!-- Vertical Data Lines -->
+                            <g stroke="rgba(255,255,255,0.1)" stroke-width="1.5" stroke-dasharray="4, 4">
+                                <line x1="20" y1="35" x2="20" y2="125"/>
+                                <line x1="140" y1="35" x2="140" y2="125"/>
+                                <line x1="80" y1="65" x2="80" y2="155"/>
+                            </g>
 
-            <!-- Background Ambient Aura -->
-            <circle cx="80" cy="90" r="60" fill="#10b981" filter="url(#ambientGlow)" opacity="0.15"/>
-            <circle cx="80" cy="50" r="40" fill="#3b82f6" filter="url(#ambientGlow)" opacity="0.1"/>
+                            <!-- Animated Data Nodes -->
+                            <circle cx="20" cy="125" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
+                                <animate attributeName="cy" values="125;35;125" dur="4s" repeatCount="indefinite"/>
+                                <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="140" cy="125" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
+                                <animate attributeName="cy" values="125;35;125" dur="4s" begin="2s" repeatCount="indefinite"/>
+                                <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" begin="2s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="80" cy="155" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
+                                <animate attributeName="cy" values="155;65;155" dur="4s" begin="1s" repeatCount="indefinite"/>
+                                <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" begin="1s" repeatCount="indefinite"/>
+                            </circle>
 
-            <g transform="translate(10, 5)">
-                
-                <!-- Vertical Data Lines (Connecting the stack) -->
-                <g stroke="rgba(255,255,255,0.1)" stroke-width="1.5" stroke-dasharray="4, 4">
-                    <line x1="20" y1="35" x2="20" y2="125"/>
-                    <line x1="140" y1="35" x2="140" y2="125"/>
-                    <line x1="80" y1="65" x2="80" y2="155"/>
-                </g>
+                            <!-- LAYER 3 (BOTTOM) -->
+                            <g>
+                                <animateTransform attributeName="transform" type="translate" values="0,0; 0,2; 0,0" dur="6s" repeatCount="indefinite"/>
+                                <polygon points="80,90 140,120 80,150 20,120" fill="url(#glassBot)" stroke="#a78bfa" stroke-width="1.5"/>
+                                <polygon points="20,120 80,150 80,162 20,132" fill="#6d28d9"/>
+                                <polygon points="80,150 140,120 140,132 80,162" fill="#5b21b6"/>
+                            </g>
 
-                <!-- Animated Data Nodes moving UP -->
-                <circle cx="20" cy="125" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
-                    <animate attributeName="cy" values="125;35;125" dur="4s" repeatCount="indefinite"/>
-                    <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="140" cy="125" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
-                    <animate attributeName="cy" values="125;35;125" dur="4s" begin="2s" repeatCount="indefinite"/>
-                    <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" begin="2s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="80" cy="155" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
-                    <animate attributeName="cy" values="155;65;155" dur="4s" begin="1s" repeatCount="indefinite"/>
-                    <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" begin="1s" repeatCount="indefinite"/>
-                </circle>
+                            <!-- LAYER 2 (MIDDLE) -->
+                            <g>
+                                <animateTransform attributeName="transform" type="translate" values="0,0; 0,-2; 0,0" dur="5s" repeatCount="indefinite"/>
+                                <polygon points="80,45 140,75 80,105 20,75" fill="url(#glassMid)" stroke="#60a5fa" stroke-width="1.5"/>
+                                <polyline points="50,60 80,75 110,60" fill="none" stroke="#93c5fd" stroke-width="1" opacity="0.3"/>
+                                <polyline points="50,90 80,75 110,90" fill="none" stroke="#93c5fd" stroke-width="1" opacity="0.3"/>
+                                <polygon points="20,75 80,105 80,117 20,87" fill="#1d4ed8"/>
+                                <polygon points="80,105 140,75 140,87 80,117" fill="#1e3a8a"/>
+                            </g>
 
-                <!-- ================= LAYER 3 (BOTTOM - VIOLET) ================= -->
-                <!-- Translates slightly down & up to simulate floating -->
-                <g>
-                    <animateTransform attributeName="transform" type="translate" values="0,0; 0,2; 0,0" dur="6s" repeatCount="indefinite"/>
-                    <!-- Top Glass Face -->
-                    <polygon points="80,90 140,120 80,150 20,120" fill="url(#glassBot)" stroke="#a78bfa" stroke-width="1.5"/>
-                    <!-- Left Solid Face -->
-                    <polygon points="20,120 80,150 80,162 20,132" fill="#6d28d9"/>
-                    <!-- Right Solid Face -->
-                    <polygon points="80,150 140,120 140,132 80,162" fill="#5b21b6"/>
-                </g>
+                            <!-- LAYER 1 (TOP) -->
+                            <g class="anim-pulse">
+                                <animateTransform attributeName="transform" type="translate" values="0,0; 0,-4; 0,0" dur="4s" repeatCount="indefinite"/>
+                                <polygon points="80,0 140,30 80,60 20,30" fill="url(#glassTop)" stroke="#34d399" stroke-width="2"/>
+                                <polygon points="80,15 110,30 80,45 50,30" fill="none" stroke="#6ee7b7" stroke-width="1.5" filter="url(#sharpGlow)"/>
+                                <circle cx="80" cy="30" r="3" fill="#ffffff" filter="url(#sharpGlow)"/>
+                                <polygon points="20,30 80,60 80,72 20,42" fill="#059669"/>
+                                <polygon points="80,60 140,30 140,42 80,72" fill="#047857"/>
+                            </g>
+                        </g>
 
-                <!-- ================= LAYER 2 (MIDDLE - BLUE) ================= -->
-                <g>
-                    <animateTransform attributeName="transform" type="translate" values="0,0; 0,-2; 0,0" dur="5s" repeatCount="indefinite"/>
-                    <!-- Top Glass Face -->
-                    <polygon points="80,45 140,75 80,105 20,75" fill="url(#glassMid)" stroke="#60a5fa" stroke-width="1.5"/>
-                    <!-- Circuit Grid Lines on Mid Face -->
-                    <polyline points="50,60 80,75 110,60" fill="none" stroke="#93c5fd" stroke-width="1" opacity="0.3"/>
-                    <polyline points="50,90 80,75 110,90" fill="none" stroke="#93c5fd" stroke-width="1" opacity="0.3"/>
-                    <!-- Left Solid Face -->
-                    <polygon points="20,75 80,105 80,117 20,87" fill="#1d4ed8"/>
-                    <!-- Right Solid Face -->
-                    <polygon points="80,105 140,75 140,87 80,117" fill="#1e3a8a"/>
-                </g>
-
-                <!-- ================= LAYER 1 (TOP - EMERALD) ================= -->
-                <g class="anim-pulse">
-                    <animateTransform attributeName="transform" type="translate" values="0,0; 0,-4; 0,0" dur="4s" repeatCount="indefinite"/>
-                    <!-- Top Glass Face -->
-                    <polygon points="80,0 140,30 80,60 20,30" fill="url(#glassTop)" stroke="#34d399" stroke-width="2"/>
-                    
-                    <!-- Inner Glowing CPU Outline -->
-                    <polygon points="80,15 110,30 80,45 50,30" fill="none" stroke="#6ee7b7" stroke-width="1.5" filter="url(#sharpGlow)"/>
-                    <!-- Center CPU Dot -->
-                    <circle cx="80" cy="30" r="3" fill="#ffffff" filter="url(#sharpGlow)"/>
-
-                    <!-- Left Solid Face -->
-                    <polygon points="20,30 80,60 80,72 20,42" fill="#059669"/>
-                    <!-- Right Solid Face -->
-                    <polygon points="80,60 140,30 140,42 80,72" fill="#047857"/>
-                </g>
-            </g>
-
-            <!-- ================= TYPOGRAPHY ================= -->
-            <!-- Positioned exactly to align with the 3D stack, using native OS sans-serif fallback to Inter -->
-            <text x="175" y="112" filter="url(#textShadow)" letter-spacing="-1">
-                <!-- "Stack" (Bold, White, Sans-Serif) -->
-                <tspan fill="#f8fafc" font-size="68" font-family="'Inter', system-ui, sans-serif" font-weight="800">Stack</tspan>
-                
-                <!-- "nomic" (Bold, Emerald, Monospace) -->
-                <tspan fill="#10b981" font-size="68" font-family="'JetBrains Mono', monospace" font-weight="700">nomic</tspan>
-                
-                <!-- ".io" (Small, Slate, Monospace) -->
-                <tspan fill="#64748b" font-size="32" font-family="'JetBrains Mono', monospace" font-weight="700" dy="-4">.io</tspan>
-            </text>
-
-        </svg>
+                        <!-- TYPOGRAPHY -->
+                        <text x="175" y="112" filter="url(#textShadow)" letter-spacing="-1">
+                            <tspan fill="#f8fafc" font-size="68" font-family="'Inter', system-ui, sans-serif" font-weight="800">Stack</tspan>
+                            <tspan fill="#10b981" font-size="68" font-family="'JetBrains Mono', monospace" font-weight="700">nomic</tspan>
+                            <tspan fill="#64748b" font-size="32" font-family="'JetBrains Mono', monospace" font-weight="700" dy="-4">.io</tspan>
+                        </text>
+                    </svg>
                 </a>
                 
                 <!-- Desktop Menu -->
@@ -696,7 +586,7 @@
                         </div>
                     </div>
                     
-                    <!-- Main Image Area with Hover State (Lazy Loaded) -->
+                    <!-- Main Image Area with Hover State -->
                     <div class="relative overflow-hidden bg-slate-900">
                         <img src="/img/finyrasolutions.com_.png" alt="Finyra Solutions Portfolio Website Showcase" width="1169" height="739" loading="lazy" decoding="async" class="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-in-out">
                         
@@ -914,6 +804,43 @@
         </div>
     </section>
 
+    <section class="py-12 bg-slate-900/80 border-t border-slate-800 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between bg-slate-800/40 border border-slate-700/60 rounded-3xl p-8 gap-10 shadow-2xl backdrop-blur-sm">
+                
+                <!-- Verification Info -->
+                <div class="text-center md:text-left w-full md:w-1/2">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-brand-primary text-xs font-bold mb-6 tracking-wide uppercase">
+                        <i class="fas fa-shield-check"></i> Govt. of India Recognized
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-3">Registered MSME Enterprise</h3>
+                    <p class="text-gray-400 text-sm mb-8 leading-relaxed max-w-md mx-auto md:mx-0">
+                        Stacknomic Systems is an officially registered and verified entity under the Ministry of Micro, Small and Medium Enterprises, ensuring complete B2B corporate compliance.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
+                        <div class="font-mono text-sm text-gray-300 bg-slate-900 border border-slate-600 px-5 py-3 rounded-xl shadow-inner">
+                            Reg No: <span class="text-white font-bold tracking-wide">UDYAM-JK-15-0031640</span>
+                        </div>
+                        <a href="https://udyamregistration.gov.in/Udyam_Verify.aspx" target="_blank" rel="noopener noreferrer" aria-label="Verify Udyam Registration" class="text-sm font-semibold text-brand-secondary hover:text-blue-400 transition flex items-center gap-2 bg-brand-secondary/10 hover:bg-brand-secondary/20 px-5 py-3 rounded-xl border border-brand-secondary/20">
+                            Verify Live <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Certificate Image -->
+                <div class="w-full md:w-1/2 flex justify-center md:justify-end">
+                    <div class="relative group">
+                        <!-- Glow effect behind image -->
+                        <div class="absolute -inset-1 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+                        <img src="/img/udyam.webp" alt="Udyam Registration Certificate" width="1128" height="372" loading="lazy" decoding="async" class="relative w-full max-w-[500px] h-auto rounded-xl border border-slate-600 shadow-2xl transform group-hover:scale-[1.02] transition duration-500 ease-in-out">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- Important: pb-32 fixes the overlap issue with floating widgets -->
     <footer class="bg-slate-900 border-t border-slate-800 pt-16 pb-32 md:pb-24 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -921,137 +848,82 @@
                 <div class="mb-8 md:mb-0 text-center md:text-left flex flex-col items-center md:items-start">
                     <a href="index.html" class="hover:opacity-80 transition-opacity mb-4 inline-block" aria-label="Stacknomic Home">
                         <!-- ANIMATED SVG LOGO (FOOTER) -->
-<svg id="stacknomic-footer-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 180" width="100%" height="100%" style="max-width: 580px; overflow: visible;">
-            <defs>
-                <style>
-                    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@800&family=JetBrains+Mono:wght@700&display=swap');
-                    .anim-pulse { animation: pulseGlow 3s infinite alternate; }
-                    @keyframes pulseGlow {
-                        0% { filter: drop-shadow(0 0 10px rgba(16,185,129,0.2)); }
-                        100% { filter: drop-shadow(0 0 25px rgba(16,185,129,0.6)); }
-                    }
-                </style>
+                        <svg id="stacknomic-footer-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 180" width="100%" height="100%" style="max-width: 580px; overflow: visible;">
+                            <defs>
+                                <style>
+                                    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@800&family=JetBrains+Mono:wght@700&display=swap');
+                                </style>
+                            </defs>
 
-                <!-- Core Glow Filters -->
-                <filter id="ambientGlow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="25" result="blur"/>
-                    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-                </filter>
-                <filter id="sharpGlow" x="-20%" y="-20%" width="140%" height="140%">
-                    <feGaussianBlur stdDeviation="4" result="blur"/>
-                    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-                </filter>
-                <filter id="textShadow">
-                    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
-                </filter>
+                            <!-- Background Ambient Aura -->
+                            <circle cx="80" cy="90" r="60" fill="#10b981" filter="url(#ambientGlow)" opacity="0.15"/>
+                            <circle cx="80" cy="50" r="40" fill="#3b82f6" filter="url(#ambientGlow)" opacity="0.1"/>
 
-                <!-- Glassmorphism Gradients for Top Faces -->
-                <linearGradient id="glassTop" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#34d399" stop-opacity="0.4"/>
-                    <stop offset="100%" stop-color="#10b981" stop-opacity="0.05"/>
-                </linearGradient>
-                <linearGradient id="glassMid" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#60a5fa" stop-opacity="0.3"/>
-                    <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.05"/>
-                </linearGradient>
-                <linearGradient id="glassBot" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.3"/>
-                    <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.05"/>
-                </linearGradient>
-            </defs>
+                            <g transform="translate(10, 5)">
+                                <!-- Vertical Data Lines -->
+                                <g stroke="rgba(255,255,255,0.1)" stroke-width="1.5" stroke-dasharray="4, 4">
+                                    <line x1="20" y1="35" x2="20" y2="125"/>
+                                    <line x1="140" y1="35" x2="140" y2="125"/>
+                                    <line x1="80" y1="65" x2="80" y2="155"/>
+                                </g>
 
-            <!-- Background Ambient Aura -->
-            <circle cx="80" cy="90" r="60" fill="#10b981" filter="url(#ambientGlow)" opacity="0.15"/>
-            <circle cx="80" cy="50" r="40" fill="#3b82f6" filter="url(#ambientGlow)" opacity="0.1"/>
+                                <!-- Animated Data Nodes -->
+                                <circle cx="20" cy="125" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
+                                    <animate attributeName="cy" values="125;35;125" dur="4s" repeatCount="indefinite"/>
+                                    <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="140" cy="125" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
+                                    <animate attributeName="cy" values="125;35;125" dur="4s" begin="2s" repeatCount="indefinite"/>
+                                    <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" begin="2s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="80" cy="155" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
+                                    <animate attributeName="cy" values="155;65;155" dur="4s" begin="1s" repeatCount="indefinite"/>
+                                    <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" begin="1s" repeatCount="indefinite"/>
+                                </circle>
 
-            <g transform="translate(10, 5)">
-                
-                <!-- Vertical Data Lines (Connecting the stack) -->
-                <g stroke="rgba(255,255,255,0.1)" stroke-width="1.5" stroke-dasharray="4, 4">
-                    <line x1="20" y1="35" x2="20" y2="125"/>
-                    <line x1="140" y1="35" x2="140" y2="125"/>
-                    <line x1="80" y1="65" x2="80" y2="155"/>
-                </g>
+                                <!-- LAYER 3 (BOTTOM) -->
+                                <g>
+                                    <animateTransform attributeName="transform" type="translate" values="0,0; 0,2; 0,0" dur="6s" repeatCount="indefinite"/>
+                                    <polygon points="80,90 140,120 80,150 20,120" fill="url(#glassBot)" stroke="#a78bfa" stroke-width="1.5"/>
+                                    <polygon points="20,120 80,150 80,162 20,132" fill="#6d28d9"/>
+                                    <polygon points="80,150 140,120 140,132 80,162" fill="#5b21b6"/>
+                                </g>
 
-                <!-- Animated Data Nodes moving UP -->
-                <circle cx="20" cy="125" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
-                    <animate attributeName="cy" values="125;35;125" dur="4s" repeatCount="indefinite"/>
-                    <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="140" cy="125" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
-                    <animate attributeName="cy" values="125;35;125" dur="4s" begin="2s" repeatCount="indefinite"/>
-                    <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" begin="2s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="80" cy="155" r="2.5" fill="#a78bfa" filter="url(#sharpGlow)">
-                    <animate attributeName="cy" values="155;65;155" dur="4s" begin="1s" repeatCount="indefinite"/>
-                    <animate attributeName="fill" values="#a78bfa;#34d399;#a78bfa" dur="4s" begin="1s" repeatCount="indefinite"/>
-                </circle>
+                                <!-- LAYER 2 (MIDDLE) -->
+                                <g>
+                                    <animateTransform attributeName="transform" type="translate" values="0,0; 0,-2; 0,0" dur="5s" repeatCount="indefinite"/>
+                                    <polygon points="80,45 140,75 80,105 20,75" fill="url(#glassMid)" stroke="#60a5fa" stroke-width="1.5"/>
+                                    <polyline points="50,60 80,75 110,60" fill="none" stroke="#93c5fd" stroke-width="1" opacity="0.3"/>
+                                    <polyline points="50,90 80,75 110,90" fill="none" stroke="#93c5fd" stroke-width="1" opacity="0.3"/>
+                                    <polygon points="20,75 80,105 80,117 20,87" fill="#1d4ed8"/>
+                                    <polygon points="80,105 140,75 140,87 80,117" fill="#1e3a8a"/>
+                                </g>
 
-                <!-- ================= LAYER 3 (BOTTOM - VIOLET) ================= -->
-                <!-- Translates slightly down & up to simulate floating -->
-                <g>
-                    <animateTransform attributeName="transform" type="translate" values="0,0; 0,2; 0,0" dur="6s" repeatCount="indefinite"/>
-                    <!-- Top Glass Face -->
-                    <polygon points="80,90 140,120 80,150 20,120" fill="url(#glassBot)" stroke="#a78bfa" stroke-width="1.5"/>
-                    <!-- Left Solid Face -->
-                    <polygon points="20,120 80,150 80,162 20,132" fill="#6d28d9"/>
-                    <!-- Right Solid Face -->
-                    <polygon points="80,150 140,120 140,132 80,162" fill="#5b21b6"/>
-                </g>
+                                <!-- LAYER 1 (TOP) -->
+                                <g class="anim-pulse">
+                                    <animateTransform attributeName="transform" type="translate" values="0,0; 0,-4; 0,0" dur="4s" repeatCount="indefinite"/>
+                                    <polygon points="80,0 140,30 80,60 20,30" fill="url(#glassTop)" stroke="#34d399" stroke-width="2"/>
+                                    <polygon points="80,15 110,30 80,45 50,30" fill="none" stroke="#6ee7b7" stroke-width="1.5" filter="url(#sharpGlow)"/>
+                                    <circle cx="80" cy="30" r="3" fill="#ffffff" filter="url(#sharpGlow)"/>
+                                    <polygon points="20,30 80,60 80,72 20,42" fill="#059669"/>
+                                    <polygon points="80,60 140,30 140,42 80,72" fill="#047857"/>
+                                </g>
+                            </g>
 
-                <!-- ================= LAYER 2 (MIDDLE - BLUE) ================= -->
-                <g>
-                    <animateTransform attributeName="transform" type="translate" values="0,0; 0,-2; 0,0" dur="5s" repeatCount="indefinite"/>
-                    <!-- Top Glass Face -->
-                    <polygon points="80,45 140,75 80,105 20,75" fill="url(#glassMid)" stroke="#60a5fa" stroke-width="1.5"/>
-                    <!-- Circuit Grid Lines on Mid Face -->
-                    <polyline points="50,60 80,75 110,60" fill="none" stroke="#93c5fd" stroke-width="1" opacity="0.3"/>
-                    <polyline points="50,90 80,75 110,90" fill="none" stroke="#93c5fd" stroke-width="1" opacity="0.3"/>
-                    <!-- Left Solid Face -->
-                    <polygon points="20,75 80,105 80,117 20,87" fill="#1d4ed8"/>
-                    <!-- Right Solid Face -->
-                    <polygon points="80,105 140,75 140,87 80,117" fill="#1e3a8a"/>
-                </g>
-
-                <!-- ================= LAYER 1 (TOP - EMERALD) ================= -->
-                <g class="anim-pulse">
-                    <animateTransform attributeName="transform" type="translate" values="0,0; 0,-4; 0,0" dur="4s" repeatCount="indefinite"/>
-                    <!-- Top Glass Face -->
-                    <polygon points="80,0 140,30 80,60 20,30" fill="url(#glassTop)" stroke="#34d399" stroke-width="2"/>
-                    
-                    <!-- Inner Glowing CPU Outline -->
-                    <polygon points="80,15 110,30 80,45 50,30" fill="none" stroke="#6ee7b7" stroke-width="1.5" filter="url(#sharpGlow)"/>
-                    <!-- Center CPU Dot -->
-                    <circle cx="80" cy="30" r="3" fill="#ffffff" filter="url(#sharpGlow)"/>
-
-                    <!-- Left Solid Face -->
-                    <polygon points="20,30 80,60 80,72 20,42" fill="#059669"/>
-                    <!-- Right Solid Face -->
-                    <polygon points="80,60 140,30 140,42 80,72" fill="#047857"/>
-                </g>
-            </g>
-
-            <!-- ================= TYPOGRAPHY ================= -->
-            <!-- Positioned exactly to align with the 3D stack, using native OS sans-serif fallback to Inter -->
-            <text x="175" y="112" filter="url(#textShadow)" letter-spacing="-1">
-                <!-- "Stack" (Bold, White, Sans-Serif) -->
-                <tspan fill="#f8fafc" font-size="68" font-family="'Inter', system-ui, sans-serif" font-weight="800">Stack</tspan>
-                
-                <!-- "nomic" (Bold, Emerald, Monospace) -->
-                <tspan fill="#10b981" font-size="68" font-family="'JetBrains Mono', monospace" font-weight="700">nomic</tspan>
-                
-                <!-- ".io" (Small, Slate, Monospace) -->
-                <tspan fill="#64748b" font-size="32" font-family="'JetBrains Mono', monospace" font-weight="700" dy="-4">.io</tspan>
-            </text>
-
-        </svg>
+                            <!-- TYPOGRAPHY -->
+                            <text x="175" y="112" filter="url(#textShadow)" letter-spacing="-1">
+                                <tspan fill="#f8fafc" font-size="68" font-family="'Inter', system-ui, sans-serif" font-weight="800">Stack</tspan>
+                                <tspan fill="#10b981" font-size="68" font-family="'JetBrains Mono', monospace" font-weight="700">nomic</tspan>
+                                <tspan fill="#64748b" font-size="32" font-family="'JetBrains Mono', monospace" font-weight="700" dy="-4">.io</tspan>
+                            </text>
+                        </svg>
                     </a>
                     <p class="text-sm text-gray-500">Zero-overhead infrastructure for modern businesses.</p>
                 </div>
                 <div class="flex space-x-6">
-                    <a href="#" aria-label="Twitter" class="text-gray-500 hover:text-white transition text-xl"><i class="fab fa-twitter"></i></a>
+                    <a href="https://x.com/stacknomic" aria-label="Twitter" class="text-gray-500 hover:text-white transition text-xl"><i class="fab fa-twitter"></i></a>
                     <a href="#" aria-label="LinkedIn" class="text-gray-500 hover:text-white transition text-xl"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" aria-label="GitHub" class="text-gray-500 hover:text-white transition text-xl"><i class="fab fa-github"></i></a>
+                    <a href="https://github.com/stacknomic" aria-label="GitHub" class="text-gray-500 hover:text-white transition text-xl"><i class="fab fa-github"></i></a>
                 </div>
             </div>
             <div class="border-t border-slate-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
@@ -1065,7 +937,7 @@
     </footer>
 
     <!-- WhatsApp Floating Action Button (Left side) -->
-    <a href="https://wa.me/919103189498?text=Hi%20Stacknomic!%20I'm%20interested%20in%20discussing%20custom%20infrastructure%20for%20my%20business." target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" class="fixed bottom-6 left-6 bg-[#25D366] text-white shadow-[0_0_20px_rgba(37,211,102,0.3)] rounded-full w-14 h-14 flex items-center justify-center z-50 hover:scale-110 hover:shadow-[0_0_30px_rgba(37,211,102,0.5)] transition-all duration-300 group cursor-pointer">
+    <a href="https://wa.me/919103193937?text=Hi%20Stacknomic!%20I'm%20interested%20in%20discussing%20custom%20infrastructure%20for%20my%20business." target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" class="fixed bottom-6 left-6 bg-[#25D366] text-white shadow-[0_0_20px_rgba(37,211,102,0.3)] rounded-full w-14 h-14 flex items-center justify-center z-50 hover:scale-110 hover:shadow-[0_0_30px_rgba(37,211,102,0.5)] transition-all duration-300 group cursor-pointer">
         <i class="fab fa-whatsapp text-3xl"></i>
         <span class="absolute -top-1 -right-1 flex h-4 w-4">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
