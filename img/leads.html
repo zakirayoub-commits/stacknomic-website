@@ -12,95 +12,153 @@
             theme: {
                 extend: {
                     fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
-                    colors: { brand: { dark: '#0f172a', primary: '#10b981', secondary: '#3b82f6' } }
+                    colors: { brand: { dark: '#0f172a', primary: '#10b981', secondary: '#3b82f6', accent: '#8b5cf6' } }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #0f172a; color: #f8fafc; }
-        .glass-panel { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); }
+        body { 
+            background-color: #0f172a; 
+            color: #f8fafc;
+            background-image: 
+                linear-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(16, 185, 129, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        .glass-panel { 
+            background: rgba(15, 23, 42, 0.85); 
+            backdrop-filter: blur(16px); 
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+        }
+        /* Custom Scrollbar for Textarea */
+        textarea::-webkit-scrollbar { width: 8px; }
+        textarea::-webkit-scrollbar-track { background: #1e293b; border-radius: 4px; }
+        textarea::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        textarea::-webkit-scrollbar-thumb:hover { background: #475569; }
+        
+        .pulse-ring {
+            animation: ringPulse 2s infinite;
+        }
+        @keyframes ringPulse {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
     </style>
 </head>
-<body class="min-h-screen p-4 md:p-8 flex justify-center items-start selection:bg-brand-primary selection:text-white">
+<body class="min-h-screen p-4 md:p-8 flex justify-center items-start selection:bg-brand-primary selection:text-white" onload="loadSavedData()">
 
-    <div class="w-full max-w-4xl mt-8">
+    <!-- Toast Notification (Hidden by default) -->
+    <div id="toast" class="fixed top-6 right-6 bg-brand-primary text-gray-900 px-6 py-3 rounded-lg font-bold shadow-[0_0_20px_rgba(16,185,129,0.4)] transform translate-x-full transition-transform duration-300 z-50 flex items-center gap-3">
+        <i class="fas fa-check-circle"></i> <span>Copied to Clipboard!</span>
+    </div>
+
+    <div class="w-full max-w-5xl mt-4">
         <!-- Header -->
-        <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center justify-between mb-8 glass-panel p-4 rounded-2xl border border-brand-primary/20">
             <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-brand-primary/20 rounded-xl flex items-center justify-center border border-brand-primary/50">
-                    <i class="fas fa-satellite-dish text-brand-primary text-xl"></i>
+                <div class="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center border border-brand-primary pulse-ring relative">
+                    <i class="fas fa-crosshairs text-brand-primary text-xl relative z-10"></i>
                 </div>
                 <div>
-                    <h1 class="text-2xl font-bold">Outbound Command Center</h1>
-                    <p class="text-gray-400 text-sm font-mono">Stacknomic Internal Tool</p>
+                    <h1 class="text-2xl font-bold tracking-tight">Outbound Command Center</h1>
+                    <div class="flex items-center gap-2 text-xs font-mono text-gray-400">
+                        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                        SYSTEM ONLINE // READY TO DEPLOY
+                    </div>
                 </div>
             </div>
-            <a href="index.html" class="text-gray-500 hover:text-white transition text-sm flex items-center gap-2">
-                <i class="fas fa-arrow-left"></i> Back to Site
+            <a href="index.html" class="text-gray-400 hover:text-white transition text-sm flex items-center gap-2 bg-slate-800 px-4 py-2 rounded-lg border border-slate-700 hover:border-slate-500">
+                <i class="fas fa-arrow-left"></i> Exit CRM
             </a>
         </div>
 
         <!-- Main Form -->
-        <div class="glass-panel border border-slate-700 rounded-3xl p-6 md:p-10 shadow-2xl">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div class="glass-panel border border-slate-700 rounded-3xl p-6 md:p-10 shadow-2xl relative overflow-hidden">
+            <!-- Glow Accent -->
+            <div class="absolute top-0 right-0 w-96 h-96 bg-brand-primary/10 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
                 
-                <!-- Left Column: Inputs -->
-                <div class="space-y-6">
+                <!-- Left Column: Inputs (Takes up 5 columns) -->
+                <div class="lg:col-span-5 space-y-6">
                     <div>
-                        <label class="block text-sm font-bold text-gray-300 mb-2">Outbound Channel</label>
-                        <div class="flex bg-slate-900 rounded-lg p-1 border border-slate-700">
-                            <button id="btn-email" onclick="setChannel('email')" class="flex-1 py-2 rounded-md bg-slate-700 text-white font-bold text-sm transition shadow-md flex items-center justify-center gap-2">
+                        <label class="block text-sm font-bold text-gray-300 mb-2">1. Select Channel</label>
+                        <div class="flex bg-slate-900 rounded-xl p-1.5 border border-slate-700 shadow-inner">
+                            <button id="btn-email" onclick="setChannel('email')" class="flex-1 py-2.5 rounded-lg bg-slate-700 text-white font-bold text-sm transition shadow-md flex items-center justify-center gap-2">
                                 <i class="fas fa-envelope text-blue-400"></i> Email
                             </button>
-                            <button id="btn-wa" onclick="setChannel('whatsapp')" class="flex-1 py-2 rounded-md text-gray-400 hover:text-white font-bold text-sm transition flex items-center justify-center gap-2">
+                            <button id="btn-wa" onclick="setChannel('whatsapp')" class="flex-1 py-2.5 rounded-lg text-gray-400 hover:text-white font-bold text-sm transition flex items-center justify-center gap-2">
                                 <i class="fab fa-whatsapp text-emerald-400"></i> WhatsApp
                             </button>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-4">
+                        <label class="block text-sm font-bold text-brand-primary mb-2 border-b border-slate-700 pb-2">2. Prospect Intel</label>
+                        
                         <div>
-                            <label class="block text-sm font-bold text-gray-300 mb-2">Contact Info <span id="contact-label-hint" class="text-xs text-gray-500 font-normal">(Email address)</span></label>
-                            <input type="text" id="contactInfo" placeholder="client@example.com" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition font-mono text-sm">
+                            <label class="block text-xs font-semibold text-gray-400 mb-1">Contact Details <span id="contact-label-hint" class="font-normal">(Email)</span></label>
+                            <input type="text" id="contactInfo" placeholder="client@example.com" onkeyup="saveData()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition font-mono text-sm shadow-inner">
                         </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-400 mb-1">First Name</label>
+                                <input type="text" id="prospectName" placeholder="e.g. Rahul" onkeyup="updatePreview(); saveData();" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition shadow-inner">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-400 mb-1">Target Website</label>
+                                <input type="text" id="targetWebsite" placeholder="institute.com" onkeyup="updatePreview(); saveData();" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition font-mono text-sm shadow-inner">
+                            </div>
+                        </div>
+
                         <div>
-                            <label class="block text-sm font-bold text-gray-300 mb-2">Prospect Name</label>
-                            <input type="text" id="prospectName" placeholder="e.g. Rahul" onkeyup="updatePreview()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition">
+                            <label class="block text-xs font-semibold text-gray-400 mb-1">Current Tech Stack (Optional)</label>
+                            <input type="text" id="currentTool" placeholder="e.g. WordPress, AWS, Classplus" onkeyup="updatePreview(); saveData();" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-brand-accent focus:ring-1 focus:ring-brand-accent outline-none transition shadow-inner text-sm">
+                            <p class="text-[10px] text-gray-500 mt-1">If filled, this hyper-personalizes the pitch.</p>
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-bold text-gray-300 mb-2">Target Website URL</label>
-                        <input type="text" id="targetWebsite" placeholder="e.g. their-institute.com" onkeyup="updatePreview()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition font-mono text-sm">
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-bold text-gray-300 mb-2">Pitch Template</label>
-                        <select id="templateSelect" onchange="loadTemplate()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition appearance-none">
+                        <label class="block text-sm font-bold text-brand-secondary mb-2 border-b border-slate-700 pb-2">3. Strategy / Angle</label>
+                        <select id="templateSelect" onchange="loadTemplate(); saveData();" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-brand-secondary focus:ring-1 focus:ring-brand-secondary outline-none transition appearance-none font-semibold cursor-pointer shadow-inner">
                             <option value="custom">Custom (Write manually)</option>
-                            <option value="edtech">EdTech / Coaching Institute</option>
-                            <option value="fintech">FinTech / Consultancy</option>
+                            <option value="edtech">EdTech / Coaching Institute (Cold)</option>
+                            <option value="fintech">FinTech / Consultancy (Cold)</option>
                             <option value="audit">Free Tech Audit Offer</option>
+                            <option value="followup">Gentle Follow-Up</option>
                         </select>
                     </div>
                 </div>
 
-                <!-- Right Column: Message Preview & Action -->
-                <div class="space-y-4 flex flex-col h-full">
+                <!-- Right Column: Message Preview & Action (Takes up 7 columns) -->
+                <div class="lg:col-span-7 space-y-4 flex flex-col h-full bg-slate-900/50 p-6 rounded-2xl border border-slate-800">
                     <div id="subject-container">
                         <label class="block text-sm font-bold text-gray-300 mb-2">Subject Line</label>
-                        <input type="text" id="emailSubject" placeholder="Enter subject line..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition">
+                        <input type="text" id="emailSubject" placeholder="Enter subject line..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition font-bold shadow-inner">
                     </div>
 
-                    <div class="flex-grow flex flex-col">
-                        <label class="block text-sm font-bold text-gray-300 mb-2">Message Body</label>
-                        <textarea id="messageBody" rows="10" class="w-full h-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-gray-300 focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition text-sm leading-relaxed resize-none font-mono"></textarea>
+                    <div class="flex-grow flex flex-col min-h-[300px]">
+                        <div class="flex justify-between items-end mb-2">
+                            <label class="block text-sm font-bold text-gray-300">Message Body</label>
+                            <span class="text-xs font-mono text-brand-primary" id="charCount">0 chars</span>
+                        </div>
+                        <textarea id="messageBody" onkeyup="updateCharCount()" class="w-full h-full flex-grow bg-slate-900 border border-slate-700 rounded-lg px-5 py-4 text-gray-300 focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition text-sm leading-relaxed resize-none font-mono shadow-inner"></textarea>
                     </div>
 
-                    <button onclick="executeOutbound()" id="actionBtn" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-lg px-8 py-4 rounded-xl transition shadow-[0_0_20px_rgba(37,99,235,0.3)] mt-4 flex items-center justify-center gap-3">
-                        <i class="fas fa-paper-plane"></i> Launch Email Client
-                    </button>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                        <!-- Quick Copy Button for LinkedIn/Alternative CRM -->
+                        <button onclick="copyToClipboard()" class="sm:col-span-1 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold px-4 py-4 rounded-xl transition flex items-center justify-center gap-2">
+                            <i class="far fa-copy"></i> Copy Text
+                        </button>
+                        
+                        <!-- Primary Action Button -->
+                        <button onclick="executeOutbound()" id="actionBtn" class="sm:col-span-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-lg px-8 py-4 rounded-xl transition shadow-[0_0_20px_rgba(37,99,235,0.3)] flex items-center justify-center gap-3">
+                            <i class="fas fa-paper-plane"></i> Launch Email Client
+                        </button>
+                    </div>
                 </div>
 
             </div>
@@ -116,7 +174,7 @@
                 subject: "Question about {website} / Hosting costs",
                 body: `Hi {name},
 
-I was looking at {website} today and noticed you are likely paying premium monthly fees for your LMS/hosting. 
+I was looking at {website} today and noticed you are likely paying premium monthly fees for {tool}. 
 
 My agency, Stacknomic, builds bespoke, fully white-labeled EdTech portals (Mock Test engines, video hubs) that cost exactly ₹0 per month in server fees. We deploy on global Edge Networks so you own the tech and keep 100% of your revenue.
 
@@ -130,7 +188,7 @@ https://stacknomic.io`
                 subject: "Custom calculators for {website}",
                 body: `Hi {name},
 
-I loved the services offered on {website}. To convert more of your website traffic into warm leads, top financial firms are adding custom, interactive calculators (EMI, ROI, Portfolio Projections).
+I loved the services offered on {website}. To convert more of your website traffic into warm leads, top financial firms are moving away from {tool} and adding custom, interactive calculators (EMI, ROI, Portfolio Projections).
 
 Stacknomic specializes in building high-performance, secure financial frontends that operate with zero server overhead.
 
@@ -146,13 +204,24 @@ https://stacknomic.io`
 
 I'll keep this brief. My team at Stacknomic builds zero-overhead digital infrastructure for B2B businesses. 
 
-I'd love to offer you a free technical audit of {website}. We will analyze your current stack, page speed, and server costs, and show you exactly how migrating to a serverless architecture can drop your hosting bills to zero while improving performance.
+I'd love to offer you a free technical audit of {website}. We will analyze your current stack (including {tool}), page speed, and server costs, and show you exactly how migrating to a serverless architecture can drop your hosting bills to zero while improving performance.
 
 Let me know if you are open to receiving the report.
 
 Best,
 Stacknomic Systems
 https://stacknomic.io`
+            },
+            followup: {
+                subject: "Re: {website} infrastructure",
+                body: `Hi {name},
+
+Just bubbling this up to the top of your inbox. 
+
+Are you currently locked into a contract for {tool}, or are you open to exploring a zero-overhead infrastructure solution this month?
+
+Best,
+Stacknomic`
             }
         };
 
@@ -166,26 +235,27 @@ https://stacknomic.io`
             const contactInput = document.getElementById('contactInfo');
 
             if (channel === 'email') {
-                btnEmail.className = "flex-1 py-2 rounded-md bg-slate-700 text-white font-bold text-sm transition shadow-md flex items-center justify-center gap-2";
-                btnWa.className = "flex-1 py-2 rounded-md text-gray-400 hover:text-white font-bold text-sm transition flex items-center justify-center gap-2";
+                btnEmail.className = "flex-1 py-2.5 rounded-lg bg-slate-700 text-white font-bold text-sm transition shadow-md flex items-center justify-center gap-2";
+                btnWa.className = "flex-1 py-2.5 rounded-lg text-gray-400 hover:text-white font-bold text-sm transition flex items-center justify-center gap-2";
                 subjectContainer.style.display = 'block';
                 
-                actionBtn.className = "w-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-lg px-8 py-4 rounded-xl transition shadow-[0_0_20px_rgba(37,99,235,0.3)] mt-4 flex items-center justify-center gap-3";
+                actionBtn.className = "sm:col-span-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-lg px-8 py-4 rounded-xl transition shadow-[0_0_20px_rgba(37,99,235,0.3)] flex items-center justify-center gap-3";
                 actionBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Launch Email Client';
                 
                 contactLabel.innerText = "(Email address)";
                 contactInput.placeholder = "client@example.com";
             } else {
-                btnWa.className = "flex-1 py-2 rounded-md bg-slate-700 text-white font-bold text-sm transition shadow-md flex items-center justify-center gap-2";
-                btnEmail.className = "flex-1 py-2 rounded-md text-gray-400 hover:text-white font-bold text-sm transition flex items-center justify-center gap-2";
+                btnWa.className = "flex-1 py-2.5 rounded-lg bg-slate-700 text-white font-bold text-sm transition shadow-md flex items-center justify-center gap-2";
+                btnEmail.className = "flex-1 py-2.5 rounded-lg text-gray-400 hover:text-white font-bold text-sm transition flex items-center justify-center gap-2";
                 subjectContainer.style.display = 'none';
                 
-                actionBtn.className = "w-full bg-[#25D366] hover:bg-[#1ebd5a] text-white font-bold text-lg px-8 py-4 rounded-xl transition shadow-[0_0_20px_rgba(37,211,102,0.3)] mt-4 flex items-center justify-center gap-3";
+                actionBtn.className = "sm:col-span-2 bg-[#25D366] hover:bg-[#1ebd5a] text-white font-bold text-lg px-8 py-4 rounded-xl transition shadow-[0_0_20px_rgba(37,211,102,0.3)] flex items-center justify-center gap-3";
                 actionBtn.innerHTML = '<i class="fab fa-whatsapp text-xl"></i> Open WhatsApp Web';
                 
-                contactLabel.innerText = "(Include country code, e.g. 919876543210)";
+                contactLabel.innerText = "(Incl. country code, e.g. 919876...)";
                 contactInput.placeholder = "919876543210";
             }
+            saveData();
         }
 
         function loadTemplate() {
@@ -196,6 +266,10 @@ https://stacknomic.io`
             const templateKey = document.getElementById('templateSelect').value;
             let name = document.getElementById('prospectName').value || "[Name]";
             let website = document.getElementById('targetWebsite').value || "[Website]";
+            let tool = document.getElementById('currentTool').value;
+            
+            // Default tool wording if left blank
+            if(!tool) tool = "your current setup";
             
             // Clean up URL if they pasted https://
             website = website.replace(/^https?:\/\//, '').replace(/\/$/, '');
@@ -204,11 +278,46 @@ https://stacknomic.io`
                 let subject = templates[templateKey].subject;
                 let body = templates[templateKey].body;
 
-                subject = subject.replace(/\{website\}/g, website).replace(/\{name\}/g, name);
-                body = body.replace(/\{website\}/g, website).replace(/\{name\}/g, name);
+                subject = subject.replace(/\{website\}/g, website).replace(/\{name\}/g, name).replace(/\{tool\}/g, tool);
+                body = body.replace(/\{website\}/g, website).replace(/\{name\}/g, name).replace(/\{tool\}/g, tool);
 
                 document.getElementById('emailSubject').value = subject;
                 document.getElementById('messageBody').value = body;
+            }
+            updateCharCount();
+        }
+
+        function updateCharCount() {
+            const text = document.getElementById('messageBody').value;
+            document.getElementById('charCount').innerText = `${text.length} chars`;
+        }
+
+        async function copyToClipboard() {
+            const body = document.getElementById('messageBody').value;
+            if(!body) return;
+
+            try {
+                await navigator.clipboard.writeText(body);
+                // Show Toast
+                const toast = document.getElementById('toast');
+                toast.classList.remove('translate-x-full');
+                setTimeout(() => {
+                    toast.classList.add('translate-x-full');
+                }, 3000);
+            } catch (err) {
+                // Fallback for older browsers
+                const textArea = document.createElement("textarea");
+                textArea.value = body;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand("Copy");
+                textArea.remove();
+                
+                const toast = document.getElementById('toast');
+                toast.classList.remove('translate-x-full');
+                setTimeout(() => {
+                    toast.classList.add('translate-x-full');
+                }, 3000);
             }
         }
 
@@ -218,7 +327,7 @@ https://stacknomic.io`
             const body = encodeURIComponent(document.getElementById('messageBody').value);
 
             if (!contact) {
-                alert("Please enter a contact email or phone number first.");
+                alert("Mission Aborted: Please enter a contact email or phone number first.");
                 return;
             }
 
@@ -230,6 +339,43 @@ https://stacknomic.io`
                 const cleanPhone = contact.replace(/[^0-9]/g, '');
                 // Opens WhatsApp Web or App
                 window.open(`https://wa.me/${cleanPhone}?text=${body}`, '_blank');
+            }
+        }
+
+        // --- Local Storage Functionality ---
+        function saveData() {
+            const data = {
+                channel: currentChannel,
+                contact: document.getElementById('contactInfo').value,
+                name: document.getElementById('prospectName').value,
+                website: document.getElementById('targetWebsite').value,
+                tool: document.getElementById('currentTool').value,
+                template: document.getElementById('templateSelect').value
+            };
+            localStorage.setItem('stacknomic_crm_state', JSON.stringify(data));
+        }
+
+        function loadSavedData() {
+            const saved = localStorage.getItem('stacknomic_crm_state');
+            if (saved) {
+                try {
+                    const data = JSON.parse(saved);
+                    document.getElementById('contactInfo').value = data.contact || '';
+                    document.getElementById('prospectName').value = data.name || '';
+                    document.getElementById('targetWebsite').value = data.website || '';
+                    document.getElementById('currentTool').value = data.tool || '';
+                    document.getElementById('templateSelect').value = data.template || 'custom';
+                    
+                    if (data.channel) setChannel(data.channel);
+                    
+                    if(data.template !== 'custom') {
+                        updatePreview();
+                    } else {
+                        updateCharCount();
+                    }
+                } catch(e) {
+                    console.log("Error loading saved state.");
+                }
             }
         }
     </script>
