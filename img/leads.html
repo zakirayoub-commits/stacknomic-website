@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stacknomic Internal | Lead Outreach CRM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+                    colors: { brand: { dark: '#0f172a', primary: '#10b981', secondary: '#3b82f6' } }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; }
+        .glass-panel { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); }
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-8 flex justify-center items-start selection:bg-brand-primary selection:text-white">
+
+    <div class="w-full max-w-4xl mt-8">
+        <!-- Header -->
+        <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-brand-primary/20 rounded-xl flex items-center justify-center border border-brand-primary/50">
+                    <i class="fas fa-satellite-dish text-brand-primary text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold">Outbound Command Center</h1>
+                    <p class="text-gray-400 text-sm font-mono">Stacknomic Internal Tool</p>
+                </div>
+            </div>
+            <a href="index.html" class="text-gray-500 hover:text-white transition text-sm flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> Back to Site
+            </a>
+        </div>
+
+        <!-- Main Form -->
+        <div class="glass-panel border border-slate-700 rounded-3xl p-6 md:p-10 shadow-2xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                
+                <!-- Left Column: Inputs -->
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-300 mb-2">Outbound Channel</label>
+                        <div class="flex bg-slate-900 rounded-lg p-1 border border-slate-700">
+                            <button id="btn-email" onclick="setChannel('email')" class="flex-1 py-2 rounded-md bg-slate-700 text-white font-bold text-sm transition shadow-md flex items-center justify-center gap-2">
+                                <i class="fas fa-envelope text-blue-400"></i> Email
+                            </button>
+                            <button id="btn-wa" onclick="setChannel('whatsapp')" class="flex-1 py-2 rounded-md text-gray-400 hover:text-white font-bold text-sm transition flex items-center justify-center gap-2">
+                                <i class="fab fa-whatsapp text-emerald-400"></i> WhatsApp
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-300 mb-2">Contact Info <span id="contact-label-hint" class="text-xs text-gray-500 font-normal">(Email address)</span></label>
+                            <input type="text" id="contactInfo" placeholder="client@example.com" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition font-mono text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-300 mb-2">Prospect Name</label>
+                            <input type="text" id="prospectName" placeholder="e.g. Rahul" onkeyup="updatePreview()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-gray-300 mb-2">Target Website URL</label>
+                        <input type="text" id="targetWebsite" placeholder="e.g. their-institute.com" onkeyup="updatePreview()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition font-mono text-sm">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-gray-300 mb-2">Pitch Template</label>
+                        <select id="templateSelect" onchange="loadTemplate()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition appearance-none">
+                            <option value="custom">Custom (Write manually)</option>
+                            <option value="edtech">EdTech / Coaching Institute</option>
+                            <option value="fintech">FinTech / Consultancy</option>
+                            <option value="audit">Free Tech Audit Offer</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Right Column: Message Preview & Action -->
+                <div class="space-y-4 flex flex-col h-full">
+                    <div id="subject-container">
+                        <label class="block text-sm font-bold text-gray-300 mb-2">Subject Line</label>
+                        <input type="text" id="emailSubject" placeholder="Enter subject line..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition">
+                    </div>
+
+                    <div class="flex-grow flex flex-col">
+                        <label class="block text-sm font-bold text-gray-300 mb-2">Message Body</label>
+                        <textarea id="messageBody" rows="10" class="w-full h-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-gray-300 focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition text-sm leading-relaxed resize-none font-mono"></textarea>
+                    </div>
+
+                    <button onclick="executeOutbound()" id="actionBtn" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-lg px-8 py-4 rounded-xl transition shadow-[0_0_20px_rgba(37,99,235,0.3)] mt-4 flex items-center justify-center gap-3">
+                        <i class="fas fa-paper-plane"></i> Launch Email Client
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentChannel = 'email';
+
+        const templates = {
+            custom: { subject: "", body: "" },
+            edtech: {
+                subject: "Question about {website} / Hosting costs",
+                body: `Hi {name},
+
+I was looking at {website} today and noticed you are likely paying premium monthly fees for your LMS/hosting. 
+
+My agency, Stacknomic, builds bespoke, fully white-labeled EdTech portals (Mock Test engines, video hubs) that cost exactly ₹0 per month in server fees. We deploy on global Edge Networks so you own the tech and keep 100% of your revenue.
+
+Would you be open to a 5-minute chat to see how much capital we can save your institute this quarter?
+
+Best,
+Stacknomic Systems
+https://stacknomic.io`
+            },
+            fintech: {
+                subject: "Custom calculators for {website}",
+                body: `Hi {name},
+
+I loved the services offered on {website}. To convert more of your website traffic into warm leads, top financial firms are adding custom, interactive calculators (EMI, ROI, Portfolio Projections).
+
+Stacknomic specializes in building high-performance, secure financial frontends that operate with zero server overhead.
+
+Are you available for a quick chat this week to discuss adding a dynamic lead-capture tool to your site?
+
+Best,
+Stacknomic Systems
+https://stacknomic.io`
+            },
+            audit: {
+                subject: "Free architecture audit for {website}",
+                body: `Hi {name},
+
+I'll keep this brief. My team at Stacknomic builds zero-overhead digital infrastructure for B2B businesses. 
+
+I'd love to offer you a free technical audit of {website}. We will analyze your current stack, page speed, and server costs, and show you exactly how migrating to a serverless architecture can drop your hosting bills to zero while improving performance.
+
+Let me know if you are open to receiving the report.
+
+Best,
+Stacknomic Systems
+https://stacknomic.io`
+            }
+        };
+
+        function setChannel(channel) {
+            currentChannel = channel;
+            const btnEmail = document.getElementById('btn-email');
+            const btnWa = document.getElementById('btn-wa');
+            const subjectContainer = document.getElementById('subject-container');
+            const actionBtn = document.getElementById('actionBtn');
+            const contactLabel = document.getElementById('contact-label-hint');
+            const contactInput = document.getElementById('contactInfo');
+
+            if (channel === 'email') {
+                btnEmail.className = "flex-1 py-2 rounded-md bg-slate-700 text-white font-bold text-sm transition shadow-md flex items-center justify-center gap-2";
+                btnWa.className = "flex-1 py-2 rounded-md text-gray-400 hover:text-white font-bold text-sm transition flex items-center justify-center gap-2";
+                subjectContainer.style.display = 'block';
+                
+                actionBtn.className = "w-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-lg px-8 py-4 rounded-xl transition shadow-[0_0_20px_rgba(37,99,235,0.3)] mt-4 flex items-center justify-center gap-3";
+                actionBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Launch Email Client';
+                
+                contactLabel.innerText = "(Email address)";
+                contactInput.placeholder = "client@example.com";
+            } else {
+                btnWa.className = "flex-1 py-2 rounded-md bg-slate-700 text-white font-bold text-sm transition shadow-md flex items-center justify-center gap-2";
+                btnEmail.className = "flex-1 py-2 rounded-md text-gray-400 hover:text-white font-bold text-sm transition flex items-center justify-center gap-2";
+                subjectContainer.style.display = 'none';
+                
+                actionBtn.className = "w-full bg-[#25D366] hover:bg-[#1ebd5a] text-white font-bold text-lg px-8 py-4 rounded-xl transition shadow-[0_0_20px_rgba(37,211,102,0.3)] mt-4 flex items-center justify-center gap-3";
+                actionBtn.innerHTML = '<i class="fab fa-whatsapp text-xl"></i> Open WhatsApp Web';
+                
+                contactLabel.innerText = "(Include country code, e.g. 919876543210)";
+                contactInput.placeholder = "919876543210";
+            }
+        }
+
+        function loadTemplate() {
+            updatePreview();
+        }
+
+        function updatePreview() {
+            const templateKey = document.getElementById('templateSelect').value;
+            let name = document.getElementById('prospectName').value || "[Name]";
+            let website = document.getElementById('targetWebsite').value || "[Website]";
+            
+            // Clean up URL if they pasted https://
+            website = website.replace(/^https?:\/\//, '').replace(/\/$/, '');
+
+            if (templateKey !== 'custom') {
+                let subject = templates[templateKey].subject;
+                let body = templates[templateKey].body;
+
+                subject = subject.replace(/\{website\}/g, website).replace(/\{name\}/g, name);
+                body = body.replace(/\{website\}/g, website).replace(/\{name\}/g, name);
+
+                document.getElementById('emailSubject').value = subject;
+                document.getElementById('messageBody').value = body;
+            }
+        }
+
+        function executeOutbound() {
+            const contact = document.getElementById('contactInfo').value.trim();
+            const subject = encodeURIComponent(document.getElementById('emailSubject').value);
+            const body = encodeURIComponent(document.getElementById('messageBody').value);
+
+            if (!contact) {
+                alert("Please enter a contact email or phone number first.");
+                return;
+            }
+
+            if (currentChannel === 'email') {
+                // Opens default mail client (Gmail, Outlook, Mail app)
+                window.location.href = `mailto:${contact}?subject=${subject}&body=${body}`;
+            } else {
+                // Clean the phone number (remove spaces, +, -, etc)
+                const cleanPhone = contact.replace(/[^0-9]/g, '');
+                // Opens WhatsApp Web or App
+                window.open(`https://wa.me/${cleanPhone}?text=${body}`, '_blank');
+            }
+        }
+    </script>
+</body>
+</html>
